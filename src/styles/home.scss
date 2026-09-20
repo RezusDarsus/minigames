@@ -245,6 +245,10 @@
 .section-heading--with-actions {
   justify-content: space-between;
 }
+.new-games {
+  display: grid;
+  gap: token.$space-5;
+}
 .carousel-actions {
   gap: token.$space-2;
 }
@@ -257,7 +261,6 @@
   border: token.$border;
   border-radius: 50%;
   color: token.$color-ink;
-  cursor: default;
   background: token.$color-white;
 }
 .carousel-actions button.is-primary {
@@ -272,7 +275,7 @@
   grid-template-columns: 120px 288px minmax(420px, 1fr) 288px 120px;
   gap: token.$space-1;
   height: 388px;
-  padding: token.$space-5 token.$space-1 0;
+  padding: 0 token.$space-1;
   overflow: hidden;
 }
 .game-card {
@@ -721,6 +724,12 @@
   .button--primary:not(:disabled):hover {
     background: token.$color-primary-hover;
   }
+  .carousel-actions button:hover {
+    background: token.$color-button-hover;
+  }
+  .carousel-actions button.is-primary:hover {
+    background: token.$color-primary-hover;
+  }
   .menu-button:hover {
     background: token.$color-button-hover;
   }
@@ -805,6 +814,9 @@
     height: 18px;
     margin-right: 6px;
   }
+  .new-games {
+    gap: token.$space-3;
+  }
   .carousel-actions {
     gap: token.$space-1;
   }
@@ -824,8 +836,7 @@
   .game-carousel {
     grid-template-columns: 110px minmax(0, 1fr) 110px;
     gap: token.$space-1;
-    height: 285px;
-    padding-top: token.$space-2;
+    height: 280px;
   }
   .game-card {
     display: none;
@@ -982,6 +993,9 @@
   }
   .section-heading {
     min-height: auto;
+  }
+  .new-games {
+    gap: token.$space-2;
   }
   .game-carousel {
     grid-template-columns: 61px minmax(0, 1fr) 61px;
