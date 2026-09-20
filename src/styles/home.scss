@@ -839,7 +839,7 @@
     height: 48px;
   }
   .leaderboard td {
-    height: 56px;
+    height: 60px;
   }
   .leaderboard tbody tr:nth-child(n + 4) {
     display: none;
@@ -977,11 +977,8 @@
   .leaderboard th {
     font-size: token.$font-size-tiny;
   }
-  .leaderboard th {
-    height: 39px;
-  }
   .leaderboard td {
-    height: 46px;
+    height: 56px;
   }
   .games-played {
     display: none;
