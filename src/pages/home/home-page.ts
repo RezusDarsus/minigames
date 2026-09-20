@@ -80,6 +80,7 @@ export const renderHomePage = (root: HTMLElement): void => {
   const dialog = selectRequired<HTMLDialogElement>(root, '.auth-dialog');
   const authContent = selectRequired<HTMLElement>(dialog, '.auth-dialog__content');
   const mobileMenu = selectRequired<HTMLElement>(root, '.mobile-menu');
+  const dialogAnimationDuration: number = 180;
   const closeMenu = (): void => {
     shell.classList.remove('is-menu-open');
     mobileMenu.setAttribute('aria-hidden', 'true');
@@ -90,6 +91,14 @@ export const renderHomePage = (root: HTMLElement): void => {
       authContent.innerHTML = authForm(mode);
       authContent.classList.remove('is-changing');
     }, 120);
+  };
+  const closeAuth = (): void => {
+    if (!dialog.open || dialog.classList.contains('is-closing')) return;
+    dialog.classList.add('is-closing');
+    globalThis.setTimeout(() => {
+      dialog.close();
+      dialog.classList.remove('is-closing');
+    }, dialogAnimationDuration);
   };
   const openAuth = (mode: AuthMode): void => {
     closeMenu();
@@ -114,7 +123,7 @@ export const renderHomePage = (root: HTMLElement): void => {
       return;
     }
     if (target.closest('[data-close-auth]')) {
-      dialog.close();
+      closeAuth();
       return;
     }
     const modeButton = target.closest<HTMLElement>('[data-auth-mode]');
@@ -122,7 +131,11 @@ export const renderHomePage = (root: HTMLElement): void => {
       setAuthMode(modeButton.dataset.authMode === 'register' ? 'register' : 'login');
   });
   dialog.addEventListener('click', (event: MouseEvent) => {
-    if (event.target === dialog) dialog.close();
+    if (event.target === dialog) closeAuth();
+  });
+  dialog.addEventListener('cancel', (event: Event) => {
+    event.preventDefault();
+    closeAuth();
   });
   globalThis.addEventListener('keydown', (event: KeyboardEvent) => {
     if (event.key === 'Escape' && shell.classList.contains('is-menu-open')) closeMenu();
