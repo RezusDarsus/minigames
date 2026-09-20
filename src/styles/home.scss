@@ -259,13 +259,14 @@
   place-items: center;
   border: token.$border;
   border-radius: 50%;
+  color: token.$color-ink;
   cursor: default;
   background: token.$color-white;
 }
 .carousel-actions button.is-primary {
   background: token.$color-primary;
 }
-.carousel-actions img {
+.carousel-actions svg {
   width: 24px;
   height: 24px;
 }
@@ -493,12 +494,13 @@
 }
 .social-links a {
   display: grid;
-  width: 28px;
-  height: 28px;
+  width: token.$social-button-size;
+  height: token.$social-button-size;
   place-items: center;
   border: 1px solid transparent;
   border-radius: 50%;
   color: token.$color-white;
+  font-size: token.$font-size-title-small;
   background: token.$color-footer-low;
 }
 .site-footer__bottom {
@@ -788,9 +790,14 @@
     width: 36px;
     height: 36px;
   }
-  .carousel-actions img {
+  .carousel-actions svg {
     width: 18px;
     height: 18px;
+  }
+  .footer-links .social-links a {
+    width: token.$social-button-size-compact;
+    height: token.$social-button-size-compact;
+    font-size: token.$font-size-body;
   }
   .game-carousel {
     grid-template-columns: 110px minmax(0, 1fr) 110px;
@@ -980,7 +987,7 @@
     width: 28px;
     height: 28px;
   }
-  .carousel-actions img {
+  .carousel-actions svg {
     width: 14px;
     height: 14px;
   }
@@ -1045,10 +1052,6 @@
   }
   .footer-links > div:last-child {
     grid-column: 1 / -1;
-  }
-  .social-links a {
-    width: 24px;
-    height: 24px;
   }
   .site-footer__bottom {
     display: grid;
