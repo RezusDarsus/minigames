@@ -6,6 +6,12 @@
   }
 }
 
+@mixin breakpoint-phone {
+  @media (max-width: token.$breakpoint-phone) {
+    @content;
+  }
+}
+
 @mixin visually-hidden {
   position: absolute;
   width: 1px;
