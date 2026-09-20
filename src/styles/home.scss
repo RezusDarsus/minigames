@@ -726,7 +726,7 @@
   .developer-section,
   .site-footer__top,
   .site-footer__bottom {
-    padding-inline: token.$space-3;
+    padding-inline: token.$space-5;
   }
   .site-header {
     min-height: 72px;
@@ -905,7 +905,7 @@
 @include mixins.breakpoint-phone {
   .site-header {
     min-height: 64px;
-    padding-inline: 10px;
+    padding-inline: token.$space-2;
   }
   .brand {
     font-size: token.$font-size-body;
@@ -919,7 +919,7 @@
   }
   .hero {
     min-height: 331px;
-    padding: token.$space-4 10px;
+    padding: token.$space-4 token.$space-2;
     background-position: center;
   }
   .hero__content {
@@ -938,7 +938,7 @@
   .developer-section,
   .site-footer__top,
   .site-footer__bottom {
-    padding-inline: 10px;
+    padding-inline: token.$space-2;
   }
   .section-heading h2 {
     font-size: token.$font-size-body-large;
