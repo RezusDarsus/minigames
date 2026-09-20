@@ -13,6 +13,7 @@ const assets = {
 } as const;
 
 const navigation: readonly string[] = ['Home', 'Library', 'Tournaments', 'Community'];
+const cardInformationMinimumWidth: number = 288;
 
 const selectRequired = <ElementType extends Element>(
   root: ParentNode,
@@ -21,6 +22,13 @@ const selectRequired = <ElementType extends Element>(
   const element: Element | null = root.querySelector(selector);
   if (!element) throw new Error(`Expected element was not found: ${selector}`);
   return element as ElementType;
+};
+
+const syncCardInformation = (card: HTMLElement): void => {
+  card.classList.toggle(
+    'game-card--compact',
+    card.getBoundingClientRect().width < cardInformationMinimumWidth,
+  );
 };
 
 const cardMarkup = (game: GameCard): string => `
@@ -80,7 +88,17 @@ export const renderHomePage = (root: HTMLElement): void => {
   const mobileMenu = selectRequired<HTMLElement>(root, '.mobile-menu');
   const menuButton = selectRequired<HTMLButtonElement>(root, '[data-open-menu]');
   const menuCloseButton = selectRequired<HTMLButtonElement>(root, '[data-close-menu]');
+  const gameCards = root.querySelectorAll<HTMLElement>('.game-card');
   const dialogAnimationDuration: number = 180;
+  const cardResizeObserver: ResizeObserver = new ResizeObserver(
+    (entries: ResizeObserverEntry[]): void => {
+      for (const entry of entries) syncCardInformation(entry.target as HTMLElement);
+    },
+  );
+  for (const card of gameCards) {
+    syncCardInformation(card);
+    cardResizeObserver.observe(card);
+  }
   const closeMenu = (restoreFocus = false): void => {
     shell.classList.remove('is-menu-open');
     mobileMenu.setAttribute('aria-hidden', 'true');

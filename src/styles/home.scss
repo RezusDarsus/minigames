@@ -281,7 +281,6 @@
 }
 .game-card {
   position: relative;
-  container-type: inline-size;
   min-width: 0;
   height: 384px;
   overflow: hidden;
@@ -329,10 +328,8 @@
   width: 16px;
   height: 16px;
 }
-@container (width < #{token.$card-info-min-width}) {
-  .game-card__overlay {
-    display: none;
-  }
+.game-card--compact .game-card__overlay {
+  display: none;
 }
 .leaderboard {
   padding-top: token.$space-5;
