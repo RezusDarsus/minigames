@@ -162,7 +162,7 @@
   min-height: 627px;
   padding: 112px max(token.$space-6, calc((100% - token.$content-max) / 2));
   background:
-    linear-gradient(rgb(36 33 69 / 65%), rgb(36 33 69 / 65%)),
+    linear-gradient(token.$color-hero-overlay, token.$color-hero-overlay),
     url('../assets/images/figma-01.png') center / cover no-repeat;
 }
 .hero__content {
@@ -279,7 +279,7 @@
   gap: token.$space-1;
   padding: 36px token.$space-2 token.$space-2;
   color: token.$color-white;
-  background: linear-gradient(transparent, rgb(0 0 0 / 85%));
+  background: linear-gradient(transparent, token.$color-card-overlay);
 }
 .game-card__overlay h3 {
   overflow: hidden;
@@ -332,7 +332,7 @@
 }
 .leaderboard td {
   height: 72px;
-  border-bottom: 1px solid #dfdde8;
+  border-bottom: 1px solid token.$color-table-rule;
 }
 .leaderboard tbody tr:last-child td {
   border-bottom: 0;
@@ -358,13 +358,13 @@
   border: 1px solid token.$color-ink;
   border-radius: 50%;
   font-size: 12px;
-  background: #d6f4df;
+  background: token.$color-avatar-green;
 }
 .leaderboard tbody tr:nth-child(3n) .avatar {
-  background: #d6e1ff;
+  background: token.$color-avatar-blue;
 }
 .leaderboard tbody tr:nth-child(4n) .avatar {
-  background: #f4d9ef;
+  background: token.$color-avatar-pink;
 }
 .streak {
   font-size: 16px;
@@ -394,7 +394,7 @@
   padding: token.$space-5;
   border: token.$border;
   border-radius: token.$radius-medium;
-  box-shadow: 0 6px 14px rgb(36 33 69 / 10%);
+  box-shadow: 0 6px 14px token.$color-card-shadow;
   background: token.$color-white;
 }
 .developer-section h2 {
@@ -477,13 +477,13 @@
   place-items: center;
   border-radius: 50%;
   color: token.$color-white;
-  background: #39345e;
+  background: token.$color-social;
 }
 .site-footer__bottom {
   justify-content: space-between;
   gap: token.$space-2;
   min-height: 112px;
-  border-top: 1px solid rgb(215 213 234 / 15%);
+  border-top: 1px solid token.$color-footer-rule;
 }
 .site-footer__bottom a::before {
   margin-right: 6px;
@@ -496,7 +496,7 @@
   padding: 0;
   border: 0;
   border-radius: token.$radius-large;
-  box-shadow: 8px 8px 0 #100e20;
+  box-shadow: 8px 8px 0 token.$color-dialog-shadow;
   background: token.$color-surface;
   opacity: 0;
   transform: translateY(20px) scale(0.98);
@@ -517,7 +517,7 @@
   }
 }
 .auth-dialog::backdrop {
-  background: rgb(33 29 64 / 82%);
+  background: token.$color-dialog-backdrop;
 }
 .auth-dialog__inner {
   position: relative;
@@ -580,13 +580,13 @@
 .auth-form__message {
   min-height: 1.25em;
   margin: calc(token.$space-2 * -1) 0;
-  color: #ad2346;
+  color: token.$color-danger;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.35;
 }
 .auth-form.is-success .auth-form__message {
-  color: #146c4c;
+  color: token.$color-success;
 }
 .auth-form label {
   display: grid;
@@ -610,8 +610,8 @@
   opacity: 1;
 }
 .auth-form.is-submitted input:invalid {
-  border-color: #ad2346;
-  box-shadow: 0 0 0 2px rgb(173 35 70 / 18%);
+  border-color: token.$color-danger;
+  box-shadow: 0 0 0 2px token.$color-danger-ring;
 }
 .auth-form__forgot,
 .auth-form__text-action {
@@ -640,14 +640,14 @@
 .or-divider::after {
   flex: 1;
   height: 1px;
-  background: #d7d5df;
+  background: token.$color-form-rule;
   content: '';
 }
 .button--google {
   background: token.$color-white;
 }
 .google-mark {
-  color: #4285f4;
+  color: token.$color-google;
   font-size: 22px;
   font-weight: 900;
 }
