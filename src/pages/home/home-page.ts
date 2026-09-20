@@ -62,15 +62,15 @@ const authForm = (mode: AuthMode): string => {
 
 const homeMarkup = (): string => `
   <div class="site-shell">
-    <header class="site-header"><a class="brand" href="#home" aria-label="MiniGames home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><nav class="desktop-nav" aria-label="Primary navigation">${navigation.map((item) => `<a class="${item === 'Home' ? 'is-current' : ''}" href="#${item.toLowerCase()}">${item}</a>`).join('')}</nav><div class="header-actions"><button class="button button--outline" type="button" data-open-auth="login">Log In</button><button class="button button--primary header-sign-up" type="button" data-open-auth="register">Sign Up</button></div><button class="menu-button" type="button" data-open-menu aria-label="Open navigation menu"><img src="${assets.menu}" alt="" /></button></header>
-    <aside class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"><div class="mobile-menu__top"><a class="brand" href="#home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><button class="close-button" type="button" data-close-menu aria-label="Close navigation menu">×</button></div><nav>${navigation.map((item) => `<a href="#${item.toLowerCase()}" data-close-menu>${item}</a>`).join('')}</nav><div class="mobile-menu__actions"><button class="button button--outline button--wide" type="button" data-open-auth="login">Log In</button><button class="button button--primary button--wide" type="button" data-open-auth="register">Sign Up</button></div></aside>
+    <header class="site-header"><a class="brand" href="#home" aria-label="MiniGames home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><nav class="desktop-nav" aria-label="Primary navigation">${navigation.map((item) => `<a class="${item === 'Home' ? 'is-current' : ''}" href="#home">${item}</a>`).join('')}</nav><div class="header-actions"><button class="button button--outline" type="button" data-open-auth="login">Log In</button><button class="button button--primary header-sign-up" type="button" data-open-auth="register">Sign Up</button></div><button class="menu-button" type="button" data-open-menu aria-label="Open navigation menu"><img src="${assets.menu}" alt="" /></button></header>
+    <aside class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"><div class="mobile-menu__top"><a class="brand" href="#home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><button class="close-button" type="button" data-close-menu aria-label="Close navigation menu">×</button></div><nav>${navigation.map((item) => `<a href="#home" data-close-menu>${item}</a>`).join('')}</nav><div class="mobile-menu__actions"><button class="button button--outline button--wide" type="button" data-open-auth="login">Log In</button><button class="button button--primary button--wide" type="button" data-open-auth="register">Sign Up</button></div></aside>
     <main id="home">
-      <section class="hero"><div class="hero__content"><h1>Take a Short Break &amp; Have Fun</h1><p>Discover hundreds of curated casual mini-games. Play instantly in your browser — puzzle, match 3, farm, and board classics.</p><a class="button button--primary" href="#library">Browse Library</a></div></section>
-      <section class="section new-games" aria-labelledby="new-games-title"><div class="section-heading section-heading--with-actions"><h2 id="new-games-title">New Games</h2><div class="carousel-actions"><button type="button" data-carousel-direction="previous" aria-label="Previous games"><img src="${assets.arrowBack}" alt="" /></button><button class="is-primary" type="button" data-carousel-direction="next" aria-label="Next games"><img src="${assets.arrowForward}" alt="" /></button></div></div><div class="game-carousel">${gameCards.map((game) => cardMarkup(game)).join('')}</div></section>
+      <section class="hero"><div class="hero__content"><h1>Take a Short Break &amp; Have Fun</h1><p>Discover hundreds of curated casual mini-games. Play instantly in your browser — puzzle, match 3, farm, and board classics.</p><button class="button button--primary" type="button">Browse Library</button></div></section>
+      <section class="section new-games" aria-labelledby="new-games-title"><div class="section-heading section-heading--with-actions"><h2 id="new-games-title">New Games</h2><div class="carousel-actions"><button type="button" aria-label="Previous games"><img src="${assets.arrowBack}" alt="" /></button><button class="is-primary" type="button" aria-label="Next games"><img src="${assets.arrowForward}" alt="" /></button></div></div><div class="game-carousel">${gameCards.map((game) => cardMarkup(game)).join('')}</div></section>
       <section class="section leaderboard" aria-labelledby="leaderboard-title"><div class="section-heading"><h2 id="leaderboard-title">Top Players This Week</h2></div><div class="leaderboard__table-wrap"><table><thead><tr><th>Rank</th><th>Player</th><th class="games-played">Games Played</th><th>Score</th><th>Streak</th><th class="favorite-game">Favorite Game</th></tr></thead><tbody>${playerRows()}</tbody></table></div></section>
       <section class="developer-section" aria-labelledby="developer-title"><img class="developer-section__art" src="${assets.developer}" alt="A game developer's workspace illustration" /><div class="developer-section__content"><h2 id="developer-title">Are You a Game Developer?</h2><p>Want to see your game on MiniGames? We’re always looking for fun, engaging mini games to add to our platform. Submit your game and reach thousands of players!</p><button class="button button--primary" type="button"><img src="${assets.upload}" alt="" />Submit Form</button><small>or contact us at developers@minigames.com</small></div></section>
     </main>
-    <footer class="site-footer"><div class="site-footer__top"><div class="footer-intro"><a class="brand" href="#home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><p>Take a short break and have fun. Hundreds of curated casual mini-games right in your web browser. No download required.</p></div><div class="footer-links"><div><h3>Explore</h3><a href="#home">Home</a><a href="#library">Library</a><a href="#categories">Categories</a><a href="#tournaments">Tournaments</a></div><div><h3>Company</h3><a href="#about">About Us</a><a href="#contact">Contact</a><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Service</a></div><div><h3>Community</h3><div class="social-links"><a href="#share" aria-label="Share">↗</a><a href="#chat" aria-label="Chat">◉</a><a href="#rss" aria-label="RSS feed">◔</a></div></div></div></div><div class="site-footer__bottom"><span>© 2026 MiniGames. All rights reserved.</span><a href="https://rs.school/courses/short-track">RS School</a><a href="https://github.com/RezusDarsus">@student-nickname</a><span>Designed with love</span></div></footer>
+    <footer class="site-footer"><div class="site-footer__top"><div class="footer-intro"><a class="brand" href="#home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><p>Take a short break and have fun. Hundreds of curated casual mini-games right in your web browser. No download required.</p></div><div class="footer-links"><div><h3>Explore</h3><a href="#home">Home</a><a href="#home">Library</a><a href="#home">Categories</a><a href="#home">Tournaments</a></div><div><h3>Company</h3><a href="#home">About Us</a><a href="#home">Contact</a><a href="#home">Privacy Policy</a><a href="#home">Terms of Service</a></div><div><h3>Community</h3><div class="social-links"><a href="#home" aria-label="Share">↗</a><a href="#home" aria-label="Chat">◉</a><a href="#home" aria-label="RSS feed">◔</a></div></div></div></div><div class="site-footer__bottom"><span>© 2026 MiniGames. All rights reserved.</span><a href="https://rs.school/courses/short-track">RS School</a><a href="https://github.com/RezusDarsus">@student-nickname</a><span>Designed with love</span></div></footer>
     <dialog class="auth-dialog" aria-labelledby="auth-dialog-title"><div class="auth-dialog__inner"><button class="close-button auth-dialog__close" type="button" data-close-auth aria-label="Close authentication dialog">×</button><div class="auth-dialog__content"></div></div></dialog>
   </div>`;
 
@@ -80,7 +80,6 @@ export const renderHomePage = (root: HTMLElement): void => {
   const dialog = selectRequired<HTMLDialogElement>(root, '.auth-dialog');
   const authContent = selectRequired<HTMLElement>(dialog, '.auth-dialog__content');
   const mobileMenu = selectRequired<HTMLElement>(root, '.mobile-menu');
-  const gameCarousel = selectRequired<HTMLElement>(root, '.game-carousel');
   const closeMenu = (): void => {
     shell.classList.remove('is-menu-open');
     mobileMenu.setAttribute('aria-hidden', 'true');
@@ -96,11 +95,6 @@ export const renderHomePage = (root: HTMLElement): void => {
     closeMenu();
     setAuthMode(mode);
     if (!dialog.open) dialog.showModal();
-  };
-  const rotateGameCards = (direction: 'next' | 'previous'): void => {
-    const cards = [...gameCarousel.children];
-    const edgeCard = direction === 'next' ? cards[0] : cards.at(-1);
-    if (edgeCard) gameCarousel[direction === 'next' ? 'append' : 'prepend'](edgeCard);
   };
   root.addEventListener('click', (event: MouseEvent) => {
     const target = event.target;
@@ -123,19 +117,15 @@ export const renderHomePage = (root: HTMLElement): void => {
       dialog.close();
       return;
     }
-    const carouselButton = target.closest<HTMLElement>('[data-carousel-direction]');
-    if (carouselButton) {
-      rotateGameCards(
-        carouselButton.dataset.carouselDirection === 'previous' ? 'previous' : 'next',
-      );
-      return;
-    }
     const modeButton = target.closest<HTMLElement>('[data-auth-mode]');
     if (modeButton)
       setAuthMode(modeButton.dataset.authMode === 'register' ? 'register' : 'login');
   });
   dialog.addEventListener('click', (event: MouseEvent) => {
     if (event.target === dialog) dialog.close();
+  });
+  globalThis.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (event.key === 'Escape' && shell.classList.contains('is-menu-open')) closeMenu();
   });
   dialog.addEventListener('input', (event: Event) => {
     const target = event.target;
