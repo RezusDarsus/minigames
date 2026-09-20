@@ -69,7 +69,7 @@
   align-items: center;
   justify-content: center;
   min-height: token.$button-height-small;
-  padding: 8px 20px;
+  padding: token.$space-1 20px;
   border: token.$border;
   border-radius: token.$radius-small;
   color: token.$color-ink;
@@ -81,9 +81,6 @@
 .button:disabled {
   box-shadow: none;
   transform: none;
-}
-.button--static {
-  cursor: default;
 }
 .button--primary {
   background: token.$color-primary;
@@ -128,8 +125,8 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  gap: token.$space-3;
-  padding: token.$space-2;
+  gap: token.$space-4;
+  padding: token.$space-3;
   pointer-events: none;
   opacity: 0;
   color: token.$color-footer-text;
@@ -151,6 +148,7 @@
 }
 .mobile-menu nav {
   display: grid;
+  flex: 1;
   gap: token.$space-3;
 }
 .mobile-menu nav a {
@@ -165,6 +163,13 @@
 .mobile-menu .button--outline {
   color: token.$color-white;
 }
+.mobile-menu .brand {
+  font-size: token.$font-size-title-small;
+}
+.mobile-menu .brand img {
+  width: 32px;
+  height: 32px;
+}
 .mobile-menu .button--outline {
   border-color: token.$color-white;
   background: transparent;
@@ -172,12 +177,14 @@
 .mobile-menu .close-button {
   border-color: transparent;
   color: token.$color-footer-text;
-  background: token.$color-social;
+  background: token.$color-footer-low;
 }
 .mobile-menu__actions {
   display: grid;
   gap: token.$space-2;
-  margin-top: auto;
+}
+.mobile-menu__actions .button {
+  min-height: token.$button-height-small;
 }
 .hero {
   display: flex;
@@ -203,10 +210,8 @@
   margin: 0;
   color: token.$color-ink;
   font-weight: token.$font-weight-extra-bold;
-  letter-spacing: -0.04em;
 }
 .hero h1 {
-  max-width: 11ch;
   font-size: clamp(token.$font-size-display-min, 4vw, token.$font-size-display-max);
   line-height: 1.08;
 }
@@ -220,7 +225,7 @@
 }
 .hero .button {
   min-height: token.$button-height-large;
-  padding: 16px 24px;
+  padding: token.$space-2 token.$space-3;
   font-size: token.$font-size-body-large;
 }
 .section {
@@ -250,6 +255,10 @@
 .section-heading--with-actions {
   justify-content: space-between;
 }
+.new-games {
+  display: grid;
+  gap: token.$space-5;
+}
 .carousel-actions {
   gap: token.$space-2;
 }
@@ -261,13 +270,13 @@
   place-items: center;
   border: token.$border;
   border-radius: 50%;
-  cursor: default;
+  color: token.$color-ink;
   background: token.$color-white;
 }
 .carousel-actions button.is-primary {
   background: token.$color-primary;
 }
-.carousel-actions img {
+.carousel-actions svg {
   width: 24px;
   height: 24px;
 }
@@ -276,7 +285,7 @@
   grid-template-columns: 120px 288px minmax(420px, 1fr) 288px 120px;
   gap: token.$space-1;
   height: 388px;
-  padding: token.$space-5 token.$space-1 0;
+  padding: 0 token.$space-1;
   overflow: hidden;
 }
 .game-card {
@@ -384,6 +393,9 @@
   font-size: token.$font-size-small;
   background: token.$color-avatar-green;
 }
+.leaderboard tbody tr:first-child .avatar {
+  background: token.$color-primary;
+}
 .leaderboard tbody tr:nth-child(3n) .avatar {
   background: token.$color-avatar-blue;
 }
@@ -402,7 +414,7 @@
 }
 .developer-section {
   display: grid;
-  grid-template-columns: minmax(360px, 0.72fr) minmax(540px, 1fr);
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
   gap: token.$space-5;
   align-items: center;
   padding-top: 42px;
@@ -410,14 +422,17 @@
 }
 .developer-section__art {
   width: 100%;
+  aspect-ratio: 682 / 482;
+  object-fit: cover;
   border-radius: token.$radius-medium;
 }
 .developer-section__content {
   display: grid;
+  min-width: 0;
   gap: token.$space-3;
   padding: token.$space-5;
   border: token.$border;
-  border-radius: token.$radius-medium;
+  border-radius: token.$radius-large;
   box-shadow: token.$shadow-card-soft;
   background: token.$color-white;
 }
@@ -437,11 +452,14 @@
 }
 .developer-section small {
   font-size: token.$font-size-label;
+  overflow-wrap: anywhere;
 }
 .developer-section__content .button {
   justify-self: start;
   min-height: token.$button-height-large;
-  padding: 16px 24px;
+  padding: token.$space-2 token.$space-3;
+  border-radius: token.$radius-medium;
+  box-shadow: token.$shadow-button;
 }
 .developer-section__content .button img {
   width: 24px;
@@ -493,13 +511,14 @@
 }
 .social-links a {
   display: grid;
-  width: 28px;
-  height: 28px;
+  width: token.$social-button-size;
+  height: token.$social-button-size;
   place-items: center;
   border: 1px solid transparent;
   border-radius: 50%;
   color: token.$color-white;
-  background: token.$color-social;
+  font-size: token.$font-size-title-small;
+  background: token.$color-footer-low;
 }
 .site-footer__bottom {
   justify-content: space-between;
@@ -554,16 +573,6 @@
   overflow: auto;
   max-height: calc(100dvh - 32px);
 }
-.auth-dialog__close {
-  position: absolute;
-  z-index: 2;
-  top: 12px;
-  right: 12px;
-  display: grid;
-  border-radius: 50%;
-  font-size: token.$font-size-heading;
-  line-height: 1;
-}
 .auth-dialog__content {
   opacity: 1;
   transition: opacity 120ms ease;
@@ -581,22 +590,32 @@
   gap: token.$space-3;
 }
 .auth-tabs {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: token.$tab-height;
   overflow: hidden;
+  border-radius: token.$radius-small;
+  background: token.$color-white;
+}
+.auth-tabs::after {
+  position: absolute;
+  inset: 0;
   border: token.$border;
   border-radius: token.$radius-small;
+  pointer-events: none;
+  content: '';
 }
 .auth-tabs__button {
-  min-height: token.$tab-height;
   border: 0;
   color: token.$color-ink-soft;
   font-weight: token.$font-weight-extra-bold;
   background: transparent;
 }
 .auth-tabs__button.is-active {
+  border-radius: token.$radius-small;
   color: token.$color-white;
-  background: token.$color-brand;
+  background: token.$color-footer-low;
 }
 .auth-form__heading h2 {
   font-size: token.$font-size-title;
@@ -613,20 +632,44 @@
 }
 .auth-form label {
   display: grid;
-  gap: 6px;
+  gap: token.$space-1;
   color: token.$color-ink;
   font-size: token.$font-size-body-small;
   font-weight: token.$font-weight-extra-bold;
 }
+.auth-input {
+  position: relative;
+  display: block;
+}
+.auth-input__icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: token.$space-2;
+  display: grid;
+  width: 20px;
+  place-items: center;
+  color: token.$color-ink-soft;
+  font-size: token.$font-size-title-small;
+  pointer-events: none;
+}
+.auth-input__icon--end {
+  right: token.$space-2;
+  left: auto;
+}
 .auth-form input {
+  display: block;
   width: 100%;
-  min-height: 40px;
-  padding: 8px 14px;
+  min-height: 48px;
+  padding: token.$space-1 token.$space-2 token.$space-1 token.$input-icon-inset;
   border: token.$border;
   border-radius: token.$radius-small;
   color: token.$color-ink;
   font-size: token.$font-size-body-small;
   background: token.$color-white;
+}
+.auth-input--trailing input {
+  padding-right: token.$input-icon-inset;
 }
 .auth-form input::placeholder {
   color: token.$color-ink-soft;
@@ -651,6 +694,16 @@
   display: grid;
   gap: token.$space-2;
 }
+.auth-form__actions .button {
+  font-size: token.$font-size-body;
+}
+.auth-form__actions .button--primary {
+  min-height: 52px;
+  box-shadow: token.$shadow-button;
+}
+.auth-form__actions .button--google {
+  min-height: 50px;
+}
 .or-divider {
   display: flex;
   gap: token.$space-2;
@@ -667,12 +720,11 @@
   content: '';
 }
 .button--google {
+  gap: token.$space-2;
   background: token.$color-white;
 }
 .google-mark {
-  color: token.$color-google;
-  font-size: token.$font-size-google-mark;
-  font-weight: token.$font-weight-black;
+  display: inline-flex;
 }
 .auth-form__footer {
   margin: 0;
@@ -686,7 +738,13 @@
   .button--outline:not(:disabled):hover {
     background: token.$color-button-hover;
   }
-  .button--primary:not(:disabled):not(.button--static):hover {
+  .button--primary:not(:disabled):hover {
+    background: token.$color-primary-hover;
+  }
+  .carousel-actions button:hover {
+    background: token.$color-button-hover;
+  }
+  .carousel-actions button.is-primary:hover {
     background: token.$color-primary-hover;
   }
   .menu-button:hover {
@@ -713,7 +771,7 @@
   .social-links a:hover {
     border-color: token.$color-primary;
     color: token.$color-primary;
-    background: token.$color-social-hover;
+    background: token.$color-footer-low-hover;
   }
   .auth-tabs__button:not(.is-active):hover {
     background: token.$color-button-hover;
@@ -726,7 +784,7 @@
   .developer-section,
   .site-footer__top,
   .site-footer__bottom {
-    padding-inline: token.$space-3;
+    padding-inline: token.$space-5;
   }
   .site-header {
     min-height: 72px;
@@ -734,6 +792,9 @@
   .desktop-nav,
   .header-actions .button--outline {
     display: none;
+  }
+  .header-actions {
+    margin-left: auto;
   }
   .menu-button {
     display: grid;
@@ -759,19 +820,22 @@
   }
   .hero .button {
     min-height: token.$button-height-small;
-    padding: 8px 20px;
+    padding: token.$space-1 20px;
     font-size: token.$font-size-body-small;
   }
   .section {
     padding-block: token.$space-3;
   }
   .section-heading h2 {
-    font-size: token.$font-size-title-small;
+    font-size: token.$font-size-title;
   }
   .section-heading h2::before {
     width: 5px;
     height: 18px;
     margin-right: 6px;
+  }
+  .new-games {
+    gap: token.$space-3;
   }
   .carousel-actions {
     gap: token.$space-1;
@@ -780,19 +844,23 @@
     width: 36px;
     height: 36px;
   }
-  .carousel-actions img {
+  .carousel-actions svg {
     width: 18px;
     height: 18px;
   }
+  .footer-links .social-links a {
+    width: token.$social-button-size-compact;
+    height: token.$social-button-size-compact;
+    font-size: token.$font-size-body;
+  }
   .game-carousel {
-    grid-template-columns: 48px minmax(214px, 1fr) 48px;
-    gap: 4px;
-    height: 160px;
-    padding-top: token.$space-2;
+    grid-template-columns: 110px minmax(0, 1fr) 110px;
+    gap: token.$space-1;
+    height: 280px;
   }
   .game-card {
     display: none;
-    height: 154px;
+    height: 281px;
     border-radius: token.$radius-medium;
   }
   .game-card:nth-child(1),
@@ -839,7 +907,7 @@
     height: 48px;
   }
   .leaderboard td {
-    height: 56px;
+    height: 60px;
   }
   .leaderboard tbody tr:nth-child(n + 4) {
     display: none;
@@ -849,8 +917,8 @@
   }
   .player {
     min-width: 120px;
-    gap: 8px;
-    padding-left: 8px;
+    gap: token.$space-1;
+    padding-left: token.$space-1;
   }
   .avatar {
     flex-basis: 24px;
@@ -864,6 +932,9 @@
     padding-top: token.$space-3;
     padding-bottom: token.$space-3;
   }
+  .developer-section__art {
+    aspect-ratio: 688 / 300;
+  }
   .developer-section__content {
     gap: token.$space-2;
     padding: token.$space-3;
@@ -876,7 +947,7 @@
   }
   .developer-section__content .button {
     min-height: token.$button-height-small;
-    padding: 8px 16px;
+    padding: token.$space-1 token.$space-2;
   }
   .developer-section small {
     font-size: token.$font-size-caption;
@@ -902,7 +973,7 @@
 @include mixins.breakpoint-phone {
   .site-header {
     min-height: 64px;
-    padding-inline: 10px;
+    padding-inline: token.$space-2;
   }
   .brand {
     font-size: token.$font-size-body;
@@ -916,7 +987,7 @@
   }
   .hero {
     min-height: 331px;
-    padding: token.$space-4 10px;
+    padding: token.$space-4 token.$space-2;
     background-position: center;
   }
   .hero__content {
@@ -926,26 +997,33 @@
     box-shadow: token.$shadow-hard;
   }
   .hero h1 {
-    font-size: token.$font-size-display-phone;
+    font-size: token.$font-size-title;
   }
   .hero p {
-    font-size: token.$font-size-caption;
+    font-size: token.$font-size-small;
   }
   .section,
   .developer-section,
   .site-footer__top,
   .site-footer__bottom {
-    padding-inline: 10px;
+    padding-inline: token.$space-2;
   }
-  .section-heading h2 {
-    font-size: token.$font-size-body-large;
+  .section {
+    padding-block: token.$space-2;
+  }
+  .section-heading {
+    min-height: auto;
+  }
+  .new-games {
+    gap: token.$space-2;
   }
   .game-carousel {
-    grid-template-columns: 28px minmax(0, 1fr) 28px;
-    height: 104px;
+    grid-template-columns: 61px minmax(0, 1fr) 61px;
+    gap: 0;
+    height: 205px;
   }
   .game-card {
-    height: 100px;
+    height: 203px;
     border-width: 2px;
     border-radius: token.$radius-card-phone;
     box-shadow: token.$shadow-card-phone;
@@ -965,7 +1043,7 @@
     width: 28px;
     height: 28px;
   }
-  .carousel-actions img {
+  .carousel-actions svg {
     width: 14px;
     height: 14px;
   }
@@ -973,11 +1051,8 @@
   .leaderboard th {
     font-size: token.$font-size-tiny;
   }
-  .leaderboard th {
-    height: 39px;
-  }
   .leaderboard td {
-    height: 46px;
+    height: 56px;
   }
   .games-played {
     display: none;
@@ -999,6 +1074,9 @@
   .streak {
     font-size: token.$font-size-caption;
   }
+  .developer-section__art {
+    aspect-ratio: 343 / 227;
+  }
   .developer-section__content {
     border-width: 2px;
   }
@@ -1011,13 +1089,17 @@
     padding-bottom: token.$space-3;
   }
   .site-footer .brand {
-    font-size: token.$font-size-body;
+    font-size: token.$font-size-title-small;
   }
   .footer-intro p,
-  .footer-links a,
-  .footer-links h3,
+  .footer-links a {
+    font-size: token.$font-size-body-small;
+  }
+  .footer-links h3 {
+    font-size: token.$font-size-body;
+  }
   .site-footer__bottom {
-    font-size: token.$font-size-caption;
+    font-size: token.$font-size-small;
   }
   .footer-links {
     display: grid;
@@ -1027,17 +1109,18 @@
   .footer-links > div:last-child {
     grid-column: 1 / -1;
   }
-  .social-links a {
-    width: 24px;
-    height: 24px;
-  }
   .site-footer__bottom {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: max-content max-content;
     align-items: start;
-    gap: token.$space-1;
+    justify-content: start;
+    column-gap: token.$space-3;
+    row-gap: token.$space-1;
     padding-top: token.$space-2;
     padding-bottom: token.$space-2;
+  }
+  .site-footer__bottom > span:first-child {
+    grid-column: 1 / -1;
   }
   .site-footer__bottom span:last-child {
     display: none;
