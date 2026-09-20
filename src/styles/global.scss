@@ -19,6 +19,10 @@ body {
   background-color: token.$color-surface;
 }
 
+body.is-scroll-locked {
+  overflow: hidden;
+}
+
 button,
 input {
   font: inherit;

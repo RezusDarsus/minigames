@@ -62,8 +62,8 @@ const authForm = (mode: AuthMode): string => {
 
 const homeMarkup = (): string => `
   <div class="site-shell">
-    <header class="site-header"><a class="brand" href="#home" aria-label="MiniGames home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><nav class="desktop-nav" aria-label="Primary navigation">${navigation.map((item) => `<a class="${item === 'Home' ? 'is-current' : ''}" href="#home">${item}</a>`).join('')}</nav><div class="header-actions"><button class="button button--outline" type="button" data-open-auth="login">Log In</button><button class="button button--primary header-sign-up" type="button" data-open-auth="register">Sign Up</button></div><button class="menu-button" type="button" data-open-menu aria-label="Open navigation menu"><img src="${assets.menu}" alt="" /></button></header>
-    <aside class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"><div class="mobile-menu__top"><a class="brand" href="#home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><button class="close-button" type="button" data-close-menu aria-label="Close navigation menu">×</button></div><nav>${navigation.map((item) => `<a href="#home" data-close-menu>${item}</a>`).join('')}</nav><div class="mobile-menu__actions"><button class="button button--outline button--wide" type="button" data-open-auth="login">Log In</button><button class="button button--primary button--wide" type="button" data-open-auth="register">Sign Up</button></div></aside>
+    <header class="site-header"><a class="brand" href="#home" aria-label="MiniGames home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><nav class="desktop-nav" aria-label="Primary navigation">${navigation.map((item) => `<a class="${item === 'Home' ? 'is-current' : ''}" href="#home">${item}</a>`).join('')}</nav><div class="header-actions"><button class="button button--outline" type="button" data-open-auth="login">Log In</button><button class="button button--primary header-sign-up" type="button" data-open-auth="register">Sign Up</button></div><button class="menu-button" type="button" data-open-menu aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu"><img src="${assets.menu}" alt="" /></button></header>
+    <aside id="mobile-navigation" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"><div class="mobile-menu__top"><a class="brand" href="#home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><button class="close-button" type="button" data-close-menu aria-label="Close navigation menu">×</button></div><nav>${navigation.map((item) => `<a href="#home" data-close-menu>${item}</a>`).join('')}</nav><div class="mobile-menu__actions"><button class="button button--outline button--wide" type="button" data-open-auth="login">Log In</button><button class="button button--primary button--wide" type="button" data-open-auth="register">Sign Up</button></div></aside>
     <main id="home">
       <section class="hero"><div class="hero__content"><h1>Take a Short Break &amp; Have Fun</h1><p>Discover hundreds of curated casual mini-games. Play instantly in your browser — puzzle, match 3, farm, and board classics.</p><button class="button button--primary" type="button">Browse Library</button></div></section>
       <section class="section new-games" aria-labelledby="new-games-title"><div class="section-heading section-heading--with-actions"><h2 id="new-games-title">New Games</h2><div class="carousel-actions"><button type="button" aria-label="Previous games"><img src="${assets.arrowBack}" alt="" /></button><button class="is-primary" type="button" aria-label="Next games"><img src="${assets.arrowForward}" alt="" /></button></div></div><div class="game-carousel">${gameCards.map((game) => cardMarkup(game)).join('')}</div></section>
@@ -80,10 +80,22 @@ export const renderHomePage = (root: HTMLElement): void => {
   const dialog = selectRequired<HTMLDialogElement>(root, '.auth-dialog');
   const authContent = selectRequired<HTMLElement>(dialog, '.auth-dialog__content');
   const mobileMenu = selectRequired<HTMLElement>(root, '.mobile-menu');
+  const menuButton = selectRequired<HTMLButtonElement>(root, '[data-open-menu]');
+  const menuCloseButton = selectRequired<HTMLButtonElement>(root, '[data-close-menu]');
   const dialogAnimationDuration: number = 180;
-  const closeMenu = (): void => {
+  const closeMenu = (restoreFocus = false): void => {
     shell.classList.remove('is-menu-open');
     mobileMenu.setAttribute('aria-hidden', 'true');
+    menuButton.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('is-scroll-locked');
+    if (restoreFocus) menuButton.focus();
+  };
+  const openMenu = (): void => {
+    shell.classList.add('is-menu-open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    menuButton.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('is-scroll-locked');
+    menuCloseButton.focus();
   };
   const setAuthMode = (mode: AuthMode): void => {
     authContent.classList.add('is-changing');
@@ -114,12 +126,11 @@ export const renderHomePage = (root: HTMLElement): void => {
       return;
     }
     if (target.closest('[data-open-menu]')) {
-      shell.classList.add('is-menu-open');
-      mobileMenu.setAttribute('aria-hidden', 'false');
+      openMenu();
       return;
     }
     if (target.closest('[data-close-menu]')) {
-      closeMenu();
+      closeMenu(true);
       return;
     }
     if (target.closest('[data-close-auth]')) {
@@ -138,7 +149,8 @@ export const renderHomePage = (root: HTMLElement): void => {
     closeAuth();
   });
   globalThis.addEventListener('keydown', (event: KeyboardEvent) => {
-    if (event.key === 'Escape' && shell.classList.contains('is-menu-open')) closeMenu();
+    if (event.key === 'Escape' && shell.classList.contains('is-menu-open'))
+      closeMenu(true);
   });
   dialog.addEventListener('input', (event: Event) => {
     const target = event.target;

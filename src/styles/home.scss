@@ -56,8 +56,7 @@
   font-size: 16px;
   font-weight: 500;
 }
-.desktop-nav a.is-current,
-.desktop-nav a:hover {
+.desktop-nav a.is-current {
   color: token.$color-ink;
   font-weight: 800;
 }
@@ -82,10 +81,6 @@
     transform 160ms ease,
     box-shadow 160ms ease,
     background-color 160ms ease;
-}
-.button:hover {
-  box-shadow: 3px 3px 0 token.$color-ink;
-  transform: translate(-1px, -1px);
 }
 .button:active {
   box-shadow: none;
@@ -468,9 +463,6 @@
 .site-footer__bottom {
   font-size: 13px;
 }
-.footer-links a:hover {
-  color: token.$color-primary;
-}
 .social-links {
   gap: token.$space-2;
 }
@@ -621,9 +613,6 @@
   color: token.$color-ink-soft;
   opacity: 1;
 }
-.auth-form input:hover {
-  border-color: token.$color-brand;
-}
 .auth-form input:focus-visible {
   outline: 0;
   border-color: token.$color-brand;
@@ -677,6 +666,35 @@
 }
 .auth-form__footer .auth-form__text-action {
   justify-self: auto;
+}
+
+@include mixins.hover-capable {
+  .desktop-nav a:hover {
+    color: token.$color-ink;
+    font-weight: 800;
+  }
+  .button:not(:disabled):hover {
+    box-shadow: 3px 3px 0 token.$color-ink;
+    transform: translate(-1px, -1px);
+  }
+  .menu-button:hover,
+  .close-button:hover {
+    color: token.$color-brand;
+  }
+  .mobile-menu nav a:hover,
+  .footer-links a:hover,
+  .auth-form__forgot:hover,
+  .auth-form__text-action:hover {
+    color: token.$color-brand;
+  }
+  .carousel-actions button:hover,
+  .social-links a:hover {
+    box-shadow: token.$shadow-hard;
+    transform: translate(-1px, -1px);
+  }
+  .auth-form input:hover {
+    border-color: token.$color-brand;
+  }
 }
 
 @include mixins.breakpoint-tablet {
