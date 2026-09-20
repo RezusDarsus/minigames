@@ -82,9 +82,6 @@
   box-shadow: none;
   transform: none;
 }
-.button--static {
-  cursor: default;
-}
 .button--primary {
   background: token.$color-primary;
 }
@@ -721,7 +718,7 @@
   .button--outline:not(:disabled):hover {
     background: token.$color-button-hover;
   }
-  .button--primary:not(:disabled):not(.button--static):hover {
+  .button--primary:not(:disabled):hover {
     background: token.$color-primary-hover;
   }
   .menu-button:hover {
