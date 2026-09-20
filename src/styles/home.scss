@@ -1,0 +1,1010 @@
+@use 'mixins';
+@use 'tokens' as token;
+
+.site-shell {
+  position: relative;
+  max-width: token.$layout-max;
+  margin: 0 auto;
+  overflow: clip;
+}
+.site-header,
+.section,
+.developer-section,
+.site-footer__top,
+.site-footer__bottom {
+  padding-inline: max(token.$space-6, calc((100% - token.$content-max) / 2));
+}
+.site-header {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 85px;
+  border-bottom: token.$border;
+  background: token.$color-surface;
+}
+.brand {
+  display: inline-flex;
+  gap: token.$space-1;
+  align-items: center;
+  color: token.$color-ink;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.brand img {
+  width: 32px;
+  height: 32px;
+}
+.desktop-nav,
+.header-actions,
+.carousel-actions,
+.game-card__meta,
+.developer-section__content .button,
+.social-links,
+.site-footer__bottom {
+  display: flex;
+  align-items: center;
+}
+.desktop-nav {
+  gap: token.$space-5;
+  margin-left: auto;
+  margin-right: token.$space-4;
+  color: token.$color-ink-soft;
+  font-size: 16px;
+  font-weight: 500;
+}
+.desktop-nav a.is-current,
+.desktop-nav a:hover {
+  color: token.$color-ink;
+  font-weight: 800;
+}
+.header-actions {
+  gap: token.$space-2;
+}
+.button {
+  display: inline-flex;
+  gap: token.$space-1;
+  align-items: center;
+  justify-content: center;
+  min-height: 37px;
+  padding: 8px 20px;
+  border: token.$border;
+  border-radius: token.$radius-small;
+  color: token.$color-ink;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+  background: token.$color-white;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+.button:hover {
+  box-shadow: 3px 3px 0 token.$color-ink;
+  transform: translate(-1px, -1px);
+}
+.button:active {
+  box-shadow: none;
+  transform: translate(1px, 1px);
+}
+.button:disabled {
+  box-shadow: none;
+  transform: none;
+}
+.button--primary {
+  background: token.$color-primary;
+}
+.button--outline {
+  background: transparent;
+}
+.button--wide {
+  width: 100%;
+  min-height: 48px;
+}
+.menu-button,
+.close-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  color: token.$color-ink;
+  background: transparent;
+}
+.menu-button img {
+  width: 24px;
+  height: 24px;
+}
+.mobile-menu {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: token.$space-8;
+  padding: token.$space-3;
+  pointer-events: none;
+  opacity: 0;
+  background: token.$color-surface;
+  transform: translateX(100%);
+  transition:
+    transform 260ms ease,
+    opacity 200ms ease;
+}
+.is-menu-open .mobile-menu {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateX(0);
+}
+.mobile-menu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mobile-menu nav {
+  display: grid;
+  gap: token.$space-3;
+}
+.mobile-menu nav a {
+  font-size: 28px;
+  font-weight: 800;
+}
+.mobile-menu__actions {
+  display: grid;
+  gap: token.$space-2;
+  margin-top: auto;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 627px;
+  padding: 112px max(token.$space-6, calc((100% - token.$content-max) / 2));
+  background:
+    linear-gradient(token.$color-hero-overlay, token.$color-hero-overlay),
+    url('../assets/images/figma-01.png') center / cover no-repeat;
+}
+.hero__content {
+  width: min(640px, 100%);
+  padding: token.$space-6;
+  border: 3px solid token.$color-ink;
+  border-radius: token.$radius-large;
+  box-shadow: token.$shadow-hero;
+  background: token.$color-surface;
+}
+.hero h1,
+.section-heading h2,
+.developer-section h2,
+.auth-form h2 {
+  margin: 0;
+  color: token.$color-ink;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.hero h1 {
+  max-width: 11ch;
+  font-size: clamp(38px, 4vw, 56px);
+  line-height: 1.08;
+}
+.hero p {
+  max-width: 57ch;
+  margin: token.$space-3 0;
+  color: token.$color-ink-soft;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.hero .button {
+  min-height: 56px;
+  padding: 16px 24px;
+  font-size: 18px;
+}
+.section {
+  padding-top: token.$space-5;
+  padding-bottom: token.$space-5;
+}
+.section-heading {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+}
+.section-heading h2::before {
+  display: inline-block;
+  width: 8px;
+  height: 32px;
+  margin-right: token.$space-1;
+  vertical-align: middle;
+  border: 1.5px solid token.$color-ink;
+  border-radius: 4px;
+  background: token.$color-primary;
+  content: '';
+}
+.section-heading h2 {
+  font-size: 32px;
+  line-height: 1.2;
+}
+.section-heading--with-actions {
+  justify-content: space-between;
+}
+.carousel-actions {
+  gap: token.$space-2;
+}
+.carousel-actions button {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  place-items: center;
+  border: token.$border;
+  border-radius: 50%;
+  background: token.$color-white;
+}
+.carousel-actions button.is-primary {
+  background: token.$color-primary;
+}
+.carousel-actions img {
+  width: 24px;
+  height: 24px;
+}
+.game-carousel {
+  display: grid;
+  grid-template-columns: 120px 288px minmax(420px, 1fr) 288px 120px;
+  gap: token.$space-1;
+  height: 388px;
+  padding: token.$space-5 token.$space-1 0;
+  overflow: hidden;
+}
+.game-card {
+  position: relative;
+  min-width: 0;
+  height: 384px;
+  overflow: hidden;
+  border: 2.5px solid token.$color-ink;
+  border-radius: token.$radius-large;
+  box-shadow: token.$shadow-hard;
+  background: token.$color-white;
+}
+.game-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.game-card__overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  gap: token.$space-1;
+  padding: 36px token.$space-2 token.$space-2;
+  color: token.$color-white;
+  background: linear-gradient(transparent, token.$color-card-overlay);
+}
+.game-card__overlay h3 {
+  overflow: hidden;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.game-card__meta {
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 800;
+}
+.game-card__meta span {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.game-card__meta img {
+  width: 16px;
+  height: 16px;
+}
+.game-card--edge .game-card__overlay {
+  display: none;
+}
+.leaderboard {
+  padding-top: token.$space-5;
+  padding-bottom: token.$space-8;
+}
+.leaderboard__table-wrap {
+  margin-top: token.$space-5;
+  overflow: hidden;
+  border: token.$border;
+  border-radius: token.$radius-small;
+}
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+.leaderboard th {
+  height: 67px;
+  color: token.$color-white;
+  font-size: 14px;
+  background: token.$color-brand;
+}
+.leaderboard td {
+  height: 72px;
+  border-bottom: 1px solid token.$color-table-rule;
+}
+.leaderboard tbody tr:last-child td {
+  border-bottom: 0;
+}
+.rank {
+  width: 6%;
+  color: token.$color-brand;
+}
+.player {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 170px;
+  padding-left: token.$space-2;
+  text-align: left;
+}
+.avatar {
+  display: grid;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid token.$color-ink;
+  border-radius: 50%;
+  font-size: 12px;
+  background: token.$color-avatar-green;
+}
+.leaderboard tbody tr:nth-child(3n) .avatar {
+  background: token.$color-avatar-blue;
+}
+.leaderboard tbody tr:nth-child(4n) .avatar {
+  background: token.$color-avatar-pink;
+}
+.streak {
+  font-size: 16px;
+}
+.favorite-game span {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid token.$color-ink;
+  border-radius: 999px;
+  font-size: 12px;
+}
+.developer-section {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.72fr) minmax(540px, 1fr);
+  gap: token.$space-5;
+  align-items: center;
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+.developer-section__art {
+  width: 100%;
+  border-radius: token.$radius-medium;
+}
+.developer-section__content {
+  display: grid;
+  gap: token.$space-3;
+  padding: token.$space-5;
+  border: token.$border;
+  border-radius: token.$radius-medium;
+  box-shadow: 0 6px 14px token.$color-card-shadow;
+  background: token.$color-white;
+}
+.developer-section h2 {
+  font-size: 28px;
+}
+.developer-section p,
+.developer-section small {
+  margin: 0;
+  color: token.$color-ink-soft;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.developer-section p {
+  max-width: 65ch;
+  font-size: 16px;
+}
+.developer-section small {
+  font-size: 13px;
+}
+.developer-section__content .button {
+  justify-self: start;
+  min-height: 56px;
+  padding: 16px 24px;
+}
+.developer-section__content .button img {
+  width: 24px;
+  height: 24px;
+}
+.site-footer {
+  color: token.$color-footer-text;
+  background: token.$color-footer;
+}
+.site-footer__top {
+  display: flex;
+  justify-content: space-between;
+  gap: token.$space-8;
+  padding-top: token.$space-5;
+  padding-bottom: token.$space-5;
+}
+.site-footer .brand {
+  color: token.$color-white;
+  font-size: 20px;
+}
+.footer-intro {
+  max-width: 400px;
+}
+.footer-intro p {
+  margin: token.$space-3 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.footer-links {
+  display: flex;
+  gap: 72px;
+}
+.footer-links > div {
+  display: grid;
+  align-content: start;
+  gap: token.$space-2;
+}
+.footer-links h3 {
+  margin: 0 0 4px;
+  color: token.$color-white;
+  font-size: 14px;
+}
+.footer-links a,
+.site-footer__bottom {
+  font-size: 13px;
+}
+.footer-links a:hover {
+  color: token.$color-primary;
+}
+.social-links {
+  gap: token.$space-2;
+}
+.social-links a {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  color: token.$color-white;
+  background: token.$color-social;
+}
+.site-footer__bottom {
+  justify-content: space-between;
+  gap: token.$space-2;
+  min-height: 112px;
+  border-top: 1px solid token.$color-footer-rule;
+}
+.site-footer__bottom a::before {
+  margin-right: 6px;
+  color: token.$color-primary;
+  content: '●';
+}
+.auth-dialog {
+  width: min(420px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: token.$radius-large;
+  box-shadow: 8px 8px 0 token.$color-dialog-shadow;
+  background: token.$color-surface;
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    overlay 180ms allow-discrete,
+    display 180ms allow-discrete;
+}
+.auth-dialog[open] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.auth-dialog.is-closing {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+@starting-style {
+  .auth-dialog[open] {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+}
+.auth-dialog::backdrop {
+  background-color: token.$color-dialog-backdrop;
+  transition: background-color 180ms ease;
+}
+.auth-dialog.is-closing::backdrop {
+  background-color: transparent;
+}
+.auth-dialog__inner {
+  position: relative;
+  overflow: auto;
+  max-height: calc(100dvh - 32px);
+}
+.auth-dialog__close {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 1;
+}
+.auth-dialog__content {
+  opacity: 1;
+  transition: opacity 120ms ease;
+}
+.auth-dialog__content.is-changing {
+  opacity: 0;
+}
+.auth-form {
+  display: grid;
+  gap: token.$space-3;
+  padding: token.$space-4;
+}
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border: token.$border;
+  border-radius: token.$radius-small;
+}
+.auth-tabs__button {
+  min-height: 44px;
+  border: 0;
+  color: token.$color-ink-soft;
+  font-weight: 800;
+  background: transparent;
+}
+.auth-tabs__button.is-active {
+  color: token.$color-white;
+  background: token.$color-brand;
+}
+.auth-form__heading h2 {
+  font-size: 24px;
+}
+.auth-form__heading p,
+.auth-form__footer {
+  margin: token.$space-1 0 0;
+  color: token.$color-ink-soft;
+  font-size: 14px;
+}
+.auth-form__fields {
+  display: grid;
+  gap: token.$space-2;
+}
+.auth-form__message {
+  min-height: 1.25em;
+  margin: calc(token.$space-2 * -1) 0;
+  color: token.$color-danger;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.auth-form.is-success .auth-form__message {
+  color: token.$color-success;
+}
+.auth-form label {
+  display: grid;
+  gap: 6px;
+  color: token.$color-ink;
+  font-size: 14px;
+  font-weight: 800;
+}
+.auth-form input {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: token.$border;
+  border-radius: token.$radius-small;
+  color: token.$color-ink;
+  font-size: 14px;
+  background: token.$color-white;
+}
+.auth-form input::placeholder {
+  color: token.$color-ink-soft;
+  opacity: 1;
+}
+.auth-form input:hover {
+  border-color: token.$color-brand;
+}
+.auth-form input:focus-visible {
+  outline: 0;
+  border-color: token.$color-brand;
+  box-shadow: 0 0 0 3px token.$color-focus-ring;
+}
+.auth-form.is-submitted input:invalid {
+  border-color: token.$color-danger;
+  box-shadow: 0 0 0 2px token.$color-danger-ring;
+}
+.auth-form__forgot,
+.auth-form__text-action {
+  justify-self: end;
+  padding: 0;
+  border: 0;
+  color: token.$color-ink;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: underline;
+  background: transparent;
+}
+.auth-form__actions {
+  display: grid;
+  gap: token.$space-2;
+}
+.or-divider {
+  display: flex;
+  gap: token.$space-2;
+  align-items: center;
+  color: token.$color-ink-soft;
+  font-size: 12px;
+  font-weight: 800;
+}
+.or-divider::before,
+.or-divider::after {
+  flex: 1;
+  height: 1px;
+  background: token.$color-form-rule;
+  content: '';
+}
+.button--google {
+  background: token.$color-white;
+}
+.google-mark {
+  color: token.$color-google;
+  font-size: 22px;
+  font-weight: 900;
+}
+.auth-form__footer {
+  margin: 0;
+  text-align: center;
+}
+.auth-form__footer .auth-form__text-action {
+  justify-self: auto;
+}
+
+@include mixins.breakpoint-tablet {
+  .site-header,
+  .section,
+  .developer-section,
+  .site-footer__top,
+  .site-footer__bottom {
+    padding-inline: token.$space-3;
+  }
+  .site-header {
+    min-height: 72px;
+  }
+  .desktop-nav,
+  .header-actions .button--outline {
+    display: none;
+  }
+  .menu-button {
+    display: grid;
+    margin-left: token.$space-2;
+  }
+  .close-button {
+    display: grid;
+  }
+  .hero {
+    min-height: 383px;
+    padding-block: token.$space-6;
+  }
+  .hero__content {
+    width: min(480px, 100%);
+    padding: token.$space-4;
+  }
+  .hero h1 {
+    font-size: 36px;
+  }
+  .hero p {
+    margin-block: token.$space-2;
+    font-size: 14px;
+  }
+  .hero .button {
+    min-height: 37px;
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  .section {
+    padding-block: token.$space-3;
+  }
+  .section-heading h2 {
+    font-size: 20px;
+  }
+  .section-heading h2::before {
+    width: 5px;
+    height: 18px;
+    margin-right: 6px;
+  }
+  .carousel-actions {
+    gap: token.$space-1;
+  }
+  .carousel-actions button {
+    width: 36px;
+    height: 36px;
+  }
+  .carousel-actions img {
+    width: 18px;
+    height: 18px;
+  }
+  .game-carousel {
+    grid-template-columns: 48px minmax(214px, 1fr) 48px;
+    gap: 4px;
+    height: 160px;
+    padding-top: token.$space-2;
+  }
+  .game-card {
+    display: none;
+    height: 154px;
+    border-radius: token.$radius-medium;
+  }
+  .game-card:nth-child(1),
+  .game-card:nth-child(3),
+  .game-card:nth-child(4) {
+    display: block;
+  }
+  .game-card:nth-child(1),
+  .game-card:nth-child(4) {
+    grid-row: 1;
+  }
+  .game-card:nth-child(1) {
+    grid-column: 1;
+  }
+  .game-card:nth-child(3) {
+    grid-column: 2;
+  }
+  .game-card:nth-child(4) {
+    grid-column: 3;
+  }
+  .game-card__overlay {
+    gap: 4px;
+    padding: 28px 10px 10px;
+  }
+  .game-card__overlay h3,
+  .game-card__meta {
+    font-size: 12px;
+  }
+  .game-card__meta img {
+    width: 12px;
+    height: 12px;
+  }
+  .leaderboard {
+    padding-bottom: token.$space-3;
+  }
+  .leaderboard__table-wrap {
+    margin-top: token.$space-3;
+  }
+  .leaderboard table,
+  .leaderboard th {
+    font-size: 10px;
+  }
+  .leaderboard th {
+    height: 48px;
+  }
+  .leaderboard td {
+    height: 56px;
+  }
+  .leaderboard tbody tr:nth-child(n + 4) {
+    display: none;
+  }
+  .favorite-game {
+    display: none;
+  }
+  .player {
+    min-width: 120px;
+    gap: 8px;
+    padding-left: 8px;
+  }
+  .avatar {
+    flex-basis: 24px;
+    width: 24px;
+    height: 24px;
+    font-size: 8px;
+  }
+  .developer-section {
+    grid-template-columns: 1fr;
+    gap: token.$space-3;
+    padding-top: token.$space-3;
+    padding-bottom: token.$space-3;
+  }
+  .developer-section__content {
+    gap: token.$space-2;
+    padding: token.$space-3;
+  }
+  .developer-section h2 {
+    font-size: 20px;
+  }
+  .developer-section p {
+    font-size: 12px;
+  }
+  .developer-section__content .button {
+    min-height: 37px;
+    padding: 8px 16px;
+  }
+  .developer-section small {
+    font-size: 10px;
+  }
+  .site-footer__top {
+    display: grid;
+    gap: token.$space-4;
+  }
+  .footer-intro {
+    max-width: none;
+  }
+  .footer-links {
+    justify-content: space-between;
+    gap: token.$space-4;
+  }
+  .site-footer__bottom {
+    flex-wrap: wrap;
+    min-height: 88px;
+    padding-block: token.$space-3;
+  }
+}
+
+@include mixins.breakpoint-phone {
+  .site-header {
+    min-height: 64px;
+    padding-inline: 10px;
+  }
+  .brand {
+    font-size: 16px;
+  }
+  .brand img {
+    width: 20px;
+    height: 20px;
+  }
+  .header-sign-up {
+    display: none;
+  }
+  .hero {
+    min-height: 331px;
+    padding: token.$space-4 10px;
+    background-position: center;
+  }
+  .hero__content {
+    padding: token.$space-3;
+    border-width: 2px;
+    border-radius: token.$radius-medium;
+    box-shadow: 4px 4px 0 token.$color-ink;
+  }
+  .hero h1 {
+    font-size: 23px;
+  }
+  .hero p {
+    font-size: 10px;
+  }
+  .section,
+  .developer-section,
+  .site-footer__top,
+  .site-footer__bottom {
+    padding-inline: 10px;
+  }
+  .section-heading h2 {
+    font-size: 18px;
+  }
+  .game-carousel {
+    grid-template-columns: 28px minmax(0, 1fr) 28px;
+    height: 104px;
+  }
+  .game-card {
+    height: 100px;
+    border-width: 2px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 0 token.$color-ink;
+  }
+  .game-card__overlay {
+    padding: 18px 7px 7px;
+  }
+  .game-card__overlay h3,
+  .game-card__meta {
+    font-size: 9px;
+  }
+  .game-card__meta img {
+    width: 9px;
+    height: 9px;
+  }
+  .carousel-actions button {
+    width: 28px;
+    height: 28px;
+  }
+  .carousel-actions img {
+    width: 14px;
+    height: 14px;
+  }
+  .leaderboard table,
+  .leaderboard th {
+    font-size: 8px;
+  }
+  .leaderboard th {
+    height: 39px;
+  }
+  .leaderboard td {
+    height: 46px;
+  }
+  .games-played {
+    display: none;
+  }
+  .rank {
+    width: 34px;
+  }
+  .player {
+    min-width: 106px;
+    gap: 5px;
+    padding-left: 5px;
+  }
+  .avatar {
+    flex-basis: 16px;
+    width: 16px;
+    height: 16px;
+    font-size: 6px;
+  }
+  .streak {
+    font-size: 10px;
+  }
+  .developer-section__content {
+    border-width: 2px;
+  }
+  .developer-section h2 {
+    font-size: 18px;
+  }
+  .site-footer__top {
+    gap: token.$space-3;
+    padding-top: token.$space-3;
+    padding-bottom: token.$space-3;
+  }
+  .site-footer .brand {
+    font-size: 16px;
+  }
+  .footer-intro p,
+  .footer-links a,
+  .footer-links h3,
+  .site-footer__bottom {
+    font-size: 10px;
+  }
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: token.$space-3;
+  }
+  .footer-links > div:last-child {
+    grid-column: 1 / -1;
+  }
+  .social-links a {
+    width: 24px;
+    height: 24px;
+  }
+  .site-footer__bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: token.$space-1;
+    padding-top: token.$space-2;
+    padding-bottom: token.$space-2;
+  }
+  .site-footer__bottom span:last-child {
+    display: none;
+  }
+  .auth-dialog {
+    width: min(420px, calc(100% - 20px));
+  }
+  .auth-form {
+    padding: token.$space-3;
+  }
+}
