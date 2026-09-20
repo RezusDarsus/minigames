@@ -1018,13 +1018,17 @@
     padding-bottom: token.$space-3;
   }
   .site-footer .brand {
-    font-size: token.$font-size-body;
+    font-size: token.$font-size-title-small;
   }
   .footer-intro p,
-  .footer-links a,
-  .footer-links h3,
+  .footer-links a {
+    font-size: token.$font-size-body-small;
+  }
+  .footer-links h3 {
+    font-size: token.$font-size-body;
+  }
   .site-footer__bottom {
-    font-size: token.$font-size-caption;
+    font-size: token.$font-size-small;
   }
   .footer-links {
     display: grid;
