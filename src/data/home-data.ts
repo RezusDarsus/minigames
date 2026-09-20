@@ -18,7 +18,7 @@ export interface LeaderboardPlayer {
 
 export const gameCards: readonly GameCard[] = [
   {
-    title: 'ISLANDERS: New Shores',
+    title: 'Tailside: Cozy Cafe Sim',
     rating: '4.9',
     likes: '54.2K',
     image: new URL('../assets/images/figma-03.jpeg', import.meta.url).href,
@@ -46,7 +46,7 @@ export const gameCards: readonly GameCard[] = [
     size: 'standard',
   },
   {
-    title: 'Cozy Sudoku',
+    title: 'Shelve the Potions',
     rating: '4.7',
     likes: '18.9K',
     image: new URL('../assets/images/figma-10.jpeg', import.meta.url).href,

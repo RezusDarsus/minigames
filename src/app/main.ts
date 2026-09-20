@@ -1,3 +1,5 @@
+import '@fontsource-variable/inter';
+
 import { renderHomePage } from '../pages/home/home-page';
 import '../styles/global.scss';
 import '../styles/home.scss';
