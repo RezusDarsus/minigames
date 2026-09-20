@@ -1,0 +1,31 @@
+@use 'tokens' as token;
+
+@mixin breakpoint-tablet {
+  @media (max-width: token.$breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin breakpoint-phone {
+  @media (max-width: token.$breakpoint-phone) {
+    @content;
+  }
+}
+
+@mixin hover-capable {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
