@@ -1,0 +1,19 @@
+@use 'tokens' as token;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: token.$breakpoint-mobile;
+}
+
+body {
+  min-width: token.$breakpoint-mobile;
+  margin: 0;
+  color: token.$color-ink;
+  font-family: token.$font-family-base;
+  background-color: token.$color-surface;
+}
