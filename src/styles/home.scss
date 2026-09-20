@@ -408,6 +408,8 @@
 }
 .developer-section__art {
   width: 100%;
+  aspect-ratio: 682 / 482;
+  object-fit: cover;
   border-radius: token.$radius-medium;
 }
 .developer-section__content {
@@ -862,6 +864,9 @@
     padding-top: token.$space-3;
     padding-bottom: token.$space-3;
   }
+  .developer-section__art {
+    aspect-ratio: 688 / 300;
+  }
   .developer-section__content {
     gap: token.$space-2;
     padding: token.$space-3;
@@ -997,6 +1002,9 @@
   }
   .streak {
     font-size: token.$font-size-caption;
+  }
+  .developer-section__art {
+    aspect-ratio: 343 / 227;
   }
   .developer-section__content {
     border-width: 2px;
