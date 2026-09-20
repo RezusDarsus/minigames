@@ -65,7 +65,7 @@ const homeMarkup = (): string => `
     <aside class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"><div class="mobile-menu__top"><a class="brand" href="#home"><img src="${assets.logo}" alt="" /><span>MiniGames</span></a><button class="close-button" type="button" data-close-menu aria-label="Close navigation menu">×</button></div><nav>${navigation.map((item) => `<a href="#${item.toLowerCase()}" data-close-menu>${item}</a>`).join('')}</nav><div class="mobile-menu__actions"><button class="button button--outline button--wide" type="button" data-open-auth="login">Log In</button><button class="button button--primary button--wide" type="button" data-open-auth="register">Sign Up</button></div></aside>
     <main id="home">
       <section class="hero"><div class="hero__content"><h1>Take a Short Break &amp; Have Fun</h1><p>Discover hundreds of curated casual mini-games. Play instantly in your browser — puzzle, match 3, farm, and board classics.</p><a class="button button--primary" href="#library">Browse Library</a></div></section>
-      <section class="section new-games" aria-labelledby="new-games-title"><div class="section-heading section-heading--with-actions"><h2 id="new-games-title">New Games</h2><div class="carousel-actions"><button type="button" aria-label="Previous games"><img src="${assets.arrowBack}" alt="" /></button><button class="is-primary" type="button" aria-label="Next games"><img src="${assets.arrowForward}" alt="" /></button></div></div><div class="game-carousel">${gameCards.map((game) => cardMarkup(game)).join('')}</div></section>
+      <section class="section new-games" aria-labelledby="new-games-title"><div class="section-heading section-heading--with-actions"><h2 id="new-games-title">New Games</h2><div class="carousel-actions"><button type="button" data-carousel-direction="previous" aria-label="Previous games"><img src="${assets.arrowBack}" alt="" /></button><button class="is-primary" type="button" data-carousel-direction="next" aria-label="Next games"><img src="${assets.arrowForward}" alt="" /></button></div></div><div class="game-carousel">${gameCards.map((game) => cardMarkup(game)).join('')}</div></section>
       <section class="section leaderboard" aria-labelledby="leaderboard-title"><div class="section-heading"><h2 id="leaderboard-title">Top Players This Week</h2></div><div class="leaderboard__table-wrap"><table><thead><tr><th>Rank</th><th>Player</th><th class="games-played">Games Played</th><th>Score</th><th>Streak</th><th class="favorite-game">Favorite Game</th></tr></thead><tbody>${playerRows()}</tbody></table></div></section>
       <section class="developer-section" aria-labelledby="developer-title"><img class="developer-section__art" src="${assets.developer}" alt="A game developer's workspace illustration" /><div class="developer-section__content"><h2 id="developer-title">Are You a Game Developer?</h2><p>Want to see your game on MiniGames? We’re always looking for fun, engaging mini games to add to our platform. Submit your game and reach thousands of players!</p><button class="button button--primary" type="button"><img src="${assets.upload}" alt="" />Submit Form</button><small>or contact us at developers@minigames.com</small></div></section>
     </main>
@@ -79,6 +79,7 @@ export const renderHomePage = (root: HTMLElement): void => {
   const dialog = selectRequired<HTMLDialogElement>(root, '.auth-dialog');
   const authContent = selectRequired<HTMLElement>(dialog, '.auth-dialog__content');
   const mobileMenu = selectRequired<HTMLElement>(root, '.mobile-menu');
+  const gameCarousel = selectRequired<HTMLElement>(root, '.game-carousel');
   const closeMenu = (): void => {
     shell.classList.remove('is-menu-open');
     mobileMenu.setAttribute('aria-hidden', 'true');
@@ -94,6 +95,11 @@ export const renderHomePage = (root: HTMLElement): void => {
     closeMenu();
     setAuthMode(mode);
     if (!dialog.open) dialog.showModal();
+  };
+  const rotateGameCards = (direction: 'next' | 'previous'): void => {
+    const cards = [...gameCarousel.children];
+    const edgeCard = direction === 'next' ? cards[0] : cards.at(-1);
+    if (edgeCard) gameCarousel[direction === 'next' ? 'append' : 'prepend'](edgeCard);
   };
   root.addEventListener('click', (event: MouseEvent) => {
     const target = event.target;
@@ -114,6 +120,13 @@ export const renderHomePage = (root: HTMLElement): void => {
     }
     if (target.closest('[data-close-auth]')) {
       dialog.close();
+      return;
+    }
+    const carouselButton = target.closest<HTMLElement>('[data-carousel-direction]');
+    if (carouselButton) {
+      rotateGameCards(
+        carouselButton.dataset.carouselDirection === 'previous' ? 'previous' : 'next',
+      );
       return;
     }
     const modeButton = target.closest<HTMLElement>('[data-auth-mode]');
