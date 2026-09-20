@@ -556,16 +556,6 @@
   overflow: auto;
   max-height: calc(100dvh - 32px);
 }
-.auth-dialog__close {
-  position: absolute;
-  z-index: 2;
-  top: 12px;
-  right: 12px;
-  display: grid;
-  border-radius: 50%;
-  font-size: token.$font-size-heading;
-  line-height: 1;
-}
 .auth-dialog__content {
   opacity: 1;
   transition: opacity 120ms ease;
@@ -583,13 +573,21 @@
   gap: token.$space-3;
 }
 .auth-tabs {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: token.$tab-height;
   overflow: hidden;
-  border: token.$border;
   border-radius: token.$radius-small;
   background: token.$color-white;
+}
+.auth-tabs::after {
+  position: absolute;
+  inset: 0;
+  border: token.$border;
+  border-radius: token.$radius-small;
+  pointer-events: none;
+  content: '';
 }
 .auth-tabs__button {
   border: 0;
@@ -598,6 +596,7 @@
   background: transparent;
 }
 .auth-tabs__button.is-active {
+  border-radius: token.$radius-small;
   color: token.$color-white;
   background: token.$color-footer-low;
 }
