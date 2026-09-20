@@ -571,10 +571,14 @@
 .auth-dialog__content.is-changing {
   opacity: 0;
 }
-.auth-form {
+.auth-block {
   display: grid;
   gap: token.$space-3;
   padding: token.$space-4;
+}
+.auth-form {
+  display: grid;
+  gap: token.$space-3;
 }
 .auth-tabs {
   display: grid;
@@ -1041,7 +1045,7 @@
   .auth-dialog {
     width: min(420px, calc(100% - 20px));
   }
-  .auth-form {
+  .auth-block {
     padding: token.$space-3;
   }
 }

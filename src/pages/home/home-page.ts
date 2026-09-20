@@ -52,18 +52,22 @@ const authForm = (mode: AuthMode): string => {
     ? 'Sign in to resume your games and progress.'
     : 'Join MiniGames to track your score & streak.';
   return `
-    <form class="auth-form auth-form--${mode}">
-      <div class="auth-tabs" role="tablist" aria-label="Authentication options"><button class="auth-tabs__button ${isLogin ? 'is-active' : ''}" type="button" role="tab" aria-selected="${isLogin}" data-auth-mode="login">Login</button><button class="auth-tabs__button ${isLogin ? '' : 'is-active'}" type="button" role="tab" aria-selected="${!isLogin}" data-auth-mode="register">Register</button></div>
-      <div class="auth-form__heading"><h2 id="auth-dialog-title">${heading}</h2><p>${description}</p></div>
-      <div class="auth-form__fields">
-        ${isLogin ? '' : '<label>Username<input type="text" name="username" autocomplete="username" placeholder="e.g. CozyGamer_99" /></label>'}
-        <label>Email Address<input type="email" name="email" autocomplete="email" placeholder="your.email@domain.com" /></label>
-        <label>Password<input type="password" name="password" autocomplete="${isLogin ? 'current-password' : 'new-password'}" placeholder="${isLogin ? '••••••••' : 'Min. 8 characters'}" /></label>
-        ${isLogin ? '<button class="auth-form__forgot" type="button">Forgot Password?</button>' : '<label>Confirm Password<input type="password" name="confirm-password" autocomplete="new-password" placeholder="Repeat your password" /></label>'}
+    <div class="auth-block">
+      <div class="auth-tabs" role="tablist" aria-label="Authentication options"><button id="auth-tab-login" class="auth-tabs__button ${isLogin ? 'is-active' : ''}" type="button" role="tab" aria-controls="auth-panel" aria-selected="${isLogin}" tabindex="${isLogin ? '0' : '-1'}" data-auth-mode="login">Login</button><button id="auth-tab-register" class="auth-tabs__button ${isLogin ? '' : 'is-active'}" type="button" role="tab" aria-controls="auth-panel" aria-selected="${!isLogin}" tabindex="${isLogin ? '-1' : '0'}" data-auth-mode="register">Register</button></div>
+      <div id="auth-panel" role="tabpanel" aria-labelledby="auth-tab-${mode}">
+        <form class="auth-form auth-form--${mode}">
+          <div class="auth-form__heading"><h2 id="auth-dialog-title">${heading}</h2><p>${description}</p></div>
+          <div class="auth-form__fields">
+            ${isLogin ? '' : '<label>Username<input type="text" name="username" autocomplete="username" placeholder="e.g. CozyGamer_99" /></label>'}
+            <label>Email Address<input type="email" name="email" autocomplete="email" placeholder="your.email@domain.com" /></label>
+            <label>Password<input type="password" name="password" autocomplete="${isLogin ? 'current-password' : 'new-password'}" placeholder="${isLogin ? '••••••••' : 'Min. 8 characters'}" /></label>
+            ${isLogin ? '<button class="auth-form__forgot" type="button">Forgot Password?</button>' : '<label>Confirm Password<input type="password" name="confirm-password" autocomplete="new-password" placeholder="Repeat your password" /></label>'}
+          </div>
+          <div class="auth-form__actions"><button class="button button--primary button--wide" type="submit">${isLogin ? 'Login' : 'Create Account'}</button><div class="or-divider"><span>OR</span></div><button class="button button--google button--wide" type="button"><span class="google-mark">G</span>${isLogin ? 'Continue' : 'Sign up'} with Google</button></div>
+          <p class="auth-form__footer">${isLogin ? "Don't have an account?" : 'Already have an account?'} <button type="button" class="auth-form__text-action" data-auth-mode="${isLogin ? 'register' : 'login'}">${isLogin ? 'Register' : 'Login'}</button></p>
+        </form>
       </div>
-      <div class="auth-form__actions"><button class="button button--primary button--wide" type="submit">${isLogin ? 'Login' : 'Create Account'}</button><div class="or-divider"><span>OR</span></div><button class="button button--google button--wide" type="button"><span class="google-mark">G</span>${isLogin ? 'Continue' : 'Sign up'} with Google</button></div>
-      <p class="auth-form__footer">${isLogin ? "Don't have an account?" : 'Already have an account?'} <button type="button" class="auth-form__text-action" data-auth-mode="${isLogin ? 'register' : 'login'}">${isLogin ? 'Register' : 'Login'}</button></p>
-    </form>`;
+    </div>`;
 };
 
 const homeMarkup = (): string => `
