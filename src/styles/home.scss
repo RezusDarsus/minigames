@@ -91,6 +91,10 @@
   box-shadow: none;
   transform: translate(1px, 1px);
 }
+.button:disabled {
+  box-shadow: none;
+  transform: none;
+}
 .button--primary {
   background: token.$color-primary;
 }
@@ -608,6 +612,14 @@
 .auth-form input::placeholder {
   color: token.$color-ink-soft;
   opacity: 1;
+}
+.auth-form input:hover {
+  border-color: token.$color-brand;
+}
+.auth-form input:focus-visible {
+  outline: 0;
+  border-color: token.$color-brand;
+  box-shadow: 0 0 0 3px token.$color-focus-ring;
 }
 .auth-form.is-submitted input:invalid {
   border-color: token.$color-danger;
