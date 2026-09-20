@@ -77,14 +77,6 @@
   font-weight: 800;
   line-height: 1.2;
   background: token.$color-white;
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease,
-    background-color 160ms ease;
-}
-.button:active {
-  box-shadow: none;
-  transform: translate(1px, 1px);
 }
 .button:disabled {
   box-shadow: none;
@@ -108,13 +100,24 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  border: 0;
+  border: token.$border;
+  border-radius: token.$radius-small;
   color: token.$color-ink;
-  background: transparent;
+  background: token.$color-white;
 }
-.menu-button img {
-  width: 24px;
-  height: 24px;
+.menu-button__icon {
+  display: grid;
+  gap: 3px;
+}
+.menu-button__icon span {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentcolor;
+}
+.close-button {
+  color: token.$color-white;
+  background: token.$color-ink;
 }
 .mobile-menu {
   position: fixed;
@@ -122,11 +125,12 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  gap: token.$space-8;
-  padding: token.$space-3;
+  gap: token.$space-3;
+  padding: token.$space-2;
   pointer-events: none;
   opacity: 0;
-  background: token.$color-surface;
+  color: token.$color-footer-text;
+  background: token.$color-footer;
   transform: translateX(100%);
   transition:
     transform 260ms ease,
@@ -147,8 +151,25 @@
   gap: token.$space-3;
 }
 .mobile-menu nav a {
-  font-size: 28px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.mobile-menu nav a.is-current {
+  color: token.$color-primary;
   font-weight: 800;
+}
+.mobile-menu .brand,
+.mobile-menu .button--outline {
+  color: token.$color-white;
+}
+.mobile-menu .button--outline {
+  border-color: token.$color-white;
+  background: transparent;
+}
+.mobile-menu .close-button {
+  border-color: transparent;
+  color: token.$color-footer-text;
+  background: token.$color-social;
 }
 .mobile-menu__actions {
   display: grid;
@@ -237,6 +258,7 @@
   place-items: center;
   border: token.$border;
   border-radius: 50%;
+  cursor: default;
   background: token.$color-white;
 }
 .carousel-actions button.is-primary {
@@ -471,6 +493,7 @@
   width: 28px;
   height: 28px;
   place-items: center;
+  border: 1px solid transparent;
   border-radius: 50%;
   color: token.$color-white;
   background: token.$color-social;
@@ -615,12 +638,10 @@
 }
 .auth-form input:focus-visible {
   outline: 0;
-  border-color: token.$color-brand;
-  box-shadow: 0 0 0 3px token.$color-focus-ring;
+  background: token.$color-input-focus;
 }
 .auth-form.is-submitted input:invalid {
   border-color: token.$color-danger;
-  box-shadow: 0 0 0 2px token.$color-danger-ring;
 }
 .auth-form__forgot,
 .auth-form__text-action {
@@ -669,31 +690,40 @@
 }
 
 @include mixins.hover-capable {
-  .desktop-nav a:hover {
-    color: token.$color-ink;
-    font-weight: 800;
+  .button--outline:not(:disabled):hover {
+    background: token.$color-button-hover;
   }
-  .button:not(:disabled):hover {
-    box-shadow: 3px 3px 0 token.$color-ink;
-    transform: translate(-1px, -1px);
+  .button--primary:not(:disabled):hover {
+    background: token.$color-primary-hover;
   }
-  .menu-button:hover,
+  .menu-button:hover {
+    background: token.$color-button-hover;
+  }
   .close-button:hover {
-    color: token.$color-brand;
+    border-color: token.$color-primary;
+    color: token.$color-primary;
   }
   .mobile-menu nav a:hover,
-  .footer-links a:hover,
+  .footer-links a:hover {
+    color: token.$color-primary;
+    text-decoration: underline;
+  }
   .auth-form__forgot:hover,
   .auth-form__text-action:hover {
     color: token.$color-brand;
   }
-  .carousel-actions button:hover,
-  .social-links a:hover {
-    box-shadow: token.$shadow-hard;
-    transform: translate(-1px, -1px);
+  .mobile-menu .button--outline:hover {
+    border-color: token.$color-primary;
+    color: token.$color-primary;
+    background: transparent;
   }
-  .auth-form input:hover {
-    border-color: token.$color-brand;
+  .social-links a:hover {
+    border-color: token.$color-primary;
+    color: token.$color-primary;
+    background: token.$color-social-hover;
+  }
+  .auth-tabs__button:not(.is-active):hover {
+    background: token.$color-button-hover;
   }
 }
 
