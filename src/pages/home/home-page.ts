@@ -2,8 +2,13 @@ import { gameCards, leaderboardPlayers, type GameCard } from '../../data/home-da
 import arrowBackIcon from '../../assets/icons/arrow-back.svg?raw';
 import arrowForwardIcon from '../../assets/icons/arrow-forward.svg?raw';
 import chatIcon from '../../assets/icons/chat.svg?raw';
+import googleIcon from '../../assets/icons/google.svg?raw';
+import lockIcon from '../../assets/icons/lock.svg?raw';
+import mailIcon from '../../assets/icons/mail.svg?raw';
+import personIcon from '../../assets/icons/person.svg?raw';
 import rssFeedIcon from '../../assets/icons/rss-feed.svg?raw';
 import shareIcon from '../../assets/icons/share.svg?raw';
+import visibilityIcon from '../../assets/icons/visibility.svg?raw';
 
 type AuthMode = 'login' | 'register';
 
@@ -48,6 +53,9 @@ const playerRows = (): string =>
     )
     .join('');
 
+const inputBox = (icon: string, input: string, trailingIcon = ''): string => `
+  <span class="auth-input${trailingIcon ? ' auth-input--trailing' : ''}"><span class="auth-input__icon">${icon}</span>${input}${trailingIcon ? `<span class="auth-input__icon auth-input__icon--end">${trailingIcon}</span>` : ''}</span>`;
+
 const authForm = (mode: AuthMode): string => {
   const isLogin = mode === 'login';
   const heading = isLogin ? 'Welcome Back!' : 'Create an Account';
@@ -61,12 +69,12 @@ const authForm = (mode: AuthMode): string => {
         <form class="auth-form auth-form--${mode}">
           <div class="auth-form__heading"><h2 id="auth-dialog-title">${heading}</h2><p>${description}</p></div>
           <div class="auth-form__fields">
-            ${isLogin ? '' : '<label>Username<input type="text" name="username" autocomplete="username" placeholder="e.g. CozyGamer_99" /></label>'}
-            <label>Email Address<input type="email" name="email" autocomplete="email" placeholder="your.email@domain.com" /></label>
-            <label>Password<input type="password" name="password" autocomplete="${isLogin ? 'current-password' : 'new-password'}" placeholder="${isLogin ? '••••••••' : 'Min. 8 characters'}" /></label>
-            ${isLogin ? '<button class="auth-form__forgot" type="button">Forgot Password?</button>' : '<label>Confirm Password<input type="password" name="confirm-password" autocomplete="new-password" placeholder="Repeat your password" /></label>'}
+            ${isLogin ? '' : `<label>Username${inputBox(personIcon, '<input type="text" name="username" autocomplete="username" placeholder="e.g. CozyGamer_99" />')}</label>`}
+            <label>Email Address${inputBox(mailIcon, `<input type="email" name="email" autocomplete="email" placeholder="${isLogin ? 'e.g. alex@minigames.com' : 'your.email@domain.com'}" />`)}</label>
+            <label>Password${inputBox(lockIcon, `<input type="password" name="password" autocomplete="${isLogin ? 'current-password' : 'new-password'}" placeholder="${isLogin ? '••••••••' : 'Min. 8 characters'}" />`, isLogin ? visibilityIcon : '')}</label>
+            ${isLogin ? '<button class="auth-form__forgot" type="button">Forgot Password?</button>' : `<label>Confirm Password${inputBox(lockIcon, '<input type="password" name="confirm-password" autocomplete="new-password" placeholder="Repeat your password" />')}</label>`}
           </div>
-          <div class="auth-form__actions"><button class="button button--primary button--wide" type="submit">${isLogin ? 'Login' : 'Create Account'}</button><div class="or-divider"><span>OR</span></div><button class="button button--google button--wide" type="button"><span class="google-mark">G</span>${isLogin ? 'Continue' : 'Sign up'} with Google</button></div>
+          <div class="auth-form__actions"><button class="button button--primary button--wide" type="submit">${isLogin ? 'Login' : 'Create Account'}</button><div class="or-divider"><span>OR</span></div><button class="button button--google button--wide" type="button"><span class="google-mark">${googleIcon}</span>${isLogin ? 'Continue' : 'Sign up'} with Google</button></div>
           <p class="auth-form__footer">${isLogin ? "Don't have an account?" : 'Already have an account?'} <button type="button" class="auth-form__text-action" data-auth-mode="${isLogin ? 'register' : 'login'}">${isLogin ? 'Register' : 'Login'}</button></p>
         </form>
       </div>
