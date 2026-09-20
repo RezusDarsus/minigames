@@ -577,6 +577,17 @@
   display: grid;
   gap: token.$space-2;
 }
+.auth-form__message {
+  min-height: 1.25em;
+  margin: calc(token.$space-2 * -1) 0;
+  color: #ad2346;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.auth-form.is-success .auth-form__message {
+  color: #146c4c;
+}
 .auth-form label {
   display: grid;
   gap: 6px;
@@ -597,6 +608,10 @@
 .auth-form input::placeholder {
   color: token.$color-ink-soft;
   opacity: 1;
+}
+.auth-form.is-submitted input:invalid {
+  border-color: #ad2346;
+  box-shadow: 0 0 0 2px rgb(173 35 70 / 18%);
 }
 .auth-form__forgot,
 .auth-form__text-action {

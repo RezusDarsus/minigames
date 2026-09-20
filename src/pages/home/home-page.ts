@@ -54,6 +54,7 @@ const authForm = (mode: AuthMode): string => {
         <label>Password<input type="password" name="password" autocomplete="${isLogin ? 'current-password' : 'new-password'}" placeholder="${isLogin ? '••••••••' : 'Min. 8 characters'}" minlength="8" required /></label>
         ${isLogin ? '<button class="auth-form__forgot" type="button">Forgot Password?</button>' : '<label>Confirm Password<input type="password" name="confirm-password" autocomplete="new-password" placeholder="Repeat your password" minlength="8" required /></label>'}
       </div>
+      <p class="auth-form__message" data-auth-message role="status" aria-live="polite"></p>
       <div class="auth-form__actions"><button class="button button--primary button--wide" type="submit">${isLogin ? 'Login' : 'Create Account'}</button><div class="or-divider"><span>OR</span></div><button class="button button--google button--wide" type="button"><span class="google-mark">G</span>${isLogin ? 'Continue' : 'Sign up'} with Google</button></div>
       <p class="auth-form__footer">${isLogin ? "Don't have an account?" : 'Already have an account?'} <button type="button" class="auth-form__text-action" data-auth-mode="${isLogin ? 'register' : 'login'}">${isLogin ? 'Register' : 'Login'}</button></p>
     </form>`;
@@ -136,7 +137,39 @@ export const renderHomePage = (root: HTMLElement): void => {
   dialog.addEventListener('click', (event: MouseEvent) => {
     if (event.target === dialog) dialog.close();
   });
+  dialog.addEventListener('input', (event: Event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement)) return;
+    const form = target.closest<HTMLFormElement>('.auth-form');
+    if (!form) return;
+    const confirmPassword = form.elements.namedItem('confirm-password');
+    if (confirmPassword instanceof HTMLInputElement)
+      confirmPassword.setCustomValidity('');
+    form.classList.remove('is-submitted', 'is-success');
+    selectRequired<HTMLElement>(form, '[data-auth-message]').textContent = '';
+  });
   dialog.addEventListener('submit', (event: SubmitEvent) => {
     event.preventDefault();
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    const password = form.elements.namedItem('password');
+    const confirmPassword = form.elements.namedItem('confirm-password');
+    if (
+      password instanceof HTMLInputElement &&
+      confirmPassword instanceof HTMLInputElement &&
+      password.value !== confirmPassword.value
+    )
+      confirmPassword.setCustomValidity('Passwords do not match.');
+    form.classList.add('is-submitted');
+    if (!form.checkValidity()) {
+      selectRequired<HTMLElement>(form, '[data-auth-message]').textContent =
+        'Please complete the highlighted fields.';
+      form.querySelector<HTMLElement>(':invalid')?.focus();
+      return;
+    }
+    form.classList.remove('is-submitted');
+    form.classList.add('is-success');
+    selectRequired<HTMLElement>(form, '[data-auth-message]').textContent =
+      'Thanks — your details are valid. Authentication will connect in a later story.';
   });
 };
