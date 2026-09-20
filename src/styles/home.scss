@@ -766,7 +766,7 @@
     padding-block: token.$space-3;
   }
   .section-heading h2 {
-    font-size: token.$font-size-title-small;
+    font-size: token.$font-size-title;
   }
   .section-heading h2::before {
     width: 5px;
@@ -929,10 +929,10 @@
     box-shadow: token.$shadow-hard;
   }
   .hero h1 {
-    font-size: token.$font-size-display-phone;
+    font-size: token.$font-size-title;
   }
   .hero p {
-    font-size: token.$font-size-caption;
+    font-size: token.$font-size-small;
   }
   .section,
   .developer-section,
@@ -940,8 +940,11 @@
   .site-footer__bottom {
     padding-inline: token.$space-2;
   }
-  .section-heading h2 {
-    font-size: token.$font-size-body-large;
+  .section {
+    padding-block: token.$space-2;
+  }
+  .section-heading {
+    min-height: auto;
   }
   .game-carousel {
     grid-template-columns: 61px minmax(0, 1fr) 61px;
