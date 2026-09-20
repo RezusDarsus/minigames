@@ -82,6 +82,9 @@
   box-shadow: none;
   transform: none;
 }
+.button--static {
+  cursor: default;
+}
 .button--primary {
   background: token.$color-primary;
 }
@@ -278,6 +281,7 @@
 }
 .game-card {
   position: relative;
+  container-type: inline-size;
   min-width: 0;
   height: 384px;
   overflow: hidden;
@@ -325,8 +329,10 @@
   width: 16px;
   height: 16px;
 }
-.game-card--edge .game-card__overlay {
-  display: none;
+@container (width < #{token.$card-info-min-width}) {
+  .game-card__overlay {
+    display: none;
+  }
 }
 .leaderboard {
   padding-top: token.$space-5;
@@ -604,17 +610,6 @@
   display: grid;
   gap: token.$space-2;
 }
-.auth-form__message {
-  min-height: 1.25em;
-  margin: calc(token.$space-2 * -1) 0;
-  color: token.$color-danger;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.35;
-}
-.auth-form.is-success .auth-form__message {
-  color: token.$color-success;
-}
 .auth-form label {
   display: grid;
   gap: 6px;
@@ -639,9 +634,6 @@
 .auth-form input:focus-visible {
   outline: 0;
   background: token.$color-input-focus;
-}
-.auth-form.is-submitted input:invalid {
-  border-color: token.$color-danger;
 }
 .auth-form__forgot,
 .auth-form__text-action {
@@ -693,7 +685,7 @@
   .button--outline:not(:disabled):hover {
     background: token.$color-button-hover;
   }
-  .button--primary:not(:disabled):hover {
+  .button--primary:not(:disabled):not(.button--static):hover {
     background: token.$color-primary-hover;
   }
   .menu-button:hover {
