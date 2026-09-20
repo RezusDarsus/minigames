@@ -29,8 +29,8 @@
   gap: token.$space-1;
   align-items: center;
   color: token.$color-ink;
-  font-size: 24px;
-  font-weight: 800;
+  font-size: token.$font-size-title;
+  font-weight: token.$font-weight-extra-bold;
   line-height: 1;
   letter-spacing: -0.04em;
 }
@@ -53,12 +53,12 @@
   margin-left: auto;
   margin-right: token.$space-4;
   color: token.$color-ink-soft;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: token.$font-size-body;
+  font-weight: token.$font-weight-medium;
 }
 .desktop-nav a.is-current {
   color: token.$color-ink;
-  font-weight: 800;
+  font-weight: token.$font-weight-extra-bold;
 }
 .header-actions {
   gap: token.$space-2;
@@ -68,13 +68,13 @@
   gap: token.$space-1;
   align-items: center;
   justify-content: center;
-  min-height: 37px;
+  min-height: token.$button-height-small;
   padding: 8px 20px;
   border: token.$border;
   border-radius: token.$radius-small;
   color: token.$color-ink;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: token.$font-size-body-small;
+  font-weight: token.$font-weight-extra-bold;
   line-height: 1.2;
   background: token.$color-white;
 }
@@ -93,7 +93,7 @@
 }
 .button--wide {
   width: 100%;
-  min-height: 48px;
+  min-height: token.$button-height-medium;
 }
 .menu-button,
 .close-button {
@@ -154,12 +154,12 @@
   gap: token.$space-3;
 }
 .mobile-menu nav a {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: token.$font-size-body;
+  font-weight: token.$font-weight-medium;
 }
 .mobile-menu nav a.is-current {
   color: token.$color-primary;
-  font-weight: 800;
+  font-weight: token.$font-weight-extra-bold;
 }
 .mobile-menu .brand,
 .mobile-menu .button--outline {
@@ -202,26 +202,26 @@
 .auth-form h2 {
   margin: 0;
   color: token.$color-ink;
-  font-weight: 800;
+  font-weight: token.$font-weight-extra-bold;
   letter-spacing: -0.04em;
 }
 .hero h1 {
   max-width: 11ch;
-  font-size: clamp(38px, 4vw, 56px);
+  font-size: clamp(token.$font-size-display-min, 4vw, token.$font-size-display-max);
   line-height: 1.08;
 }
 .hero p {
   max-width: 57ch;
   margin: token.$space-3 0;
   color: token.$color-ink-soft;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: token.$font-size-body-large;
+  font-weight: token.$font-weight-medium;
   line-height: 1.5;
 }
 .hero .button {
-  min-height: 56px;
+  min-height: token.$button-height-large;
   padding: 16px 24px;
-  font-size: 18px;
+  font-size: token.$font-size-body-large;
 }
 .section {
   padding-top: token.$space-5;
@@ -230,7 +230,7 @@
 .section-heading {
   display: flex;
   align-items: center;
-  min-height: 48px;
+  min-height: token.$button-height-medium;
 }
 .section-heading h2::before {
   display: inline-block;
@@ -239,12 +239,12 @@
   margin-right: token.$space-1;
   vertical-align: middle;
   border: 1.5px solid token.$color-ink;
-  border-radius: 4px;
+  border-radius: token.$radius-accent;
   background: token.$color-primary;
   content: '';
 }
 .section-heading h2 {
-  font-size: 32px;
+  font-size: token.$font-size-section;
   line-height: 1.2;
 }
 .section-heading--with-actions {
@@ -308,16 +308,16 @@
 .game-card__overlay h3 {
   overflow: hidden;
   margin: 0;
-  font-size: 18px;
-  font-weight: 800;
+  font-size: token.$font-size-body-large;
+  font-weight: token.$font-weight-extra-bold;
   line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .game-card__meta {
   justify-content: space-between;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: token.$font-size-body;
+  font-weight: token.$font-weight-extra-bold;
 }
 .game-card__meta span {
   display: inline-flex;
@@ -344,14 +344,14 @@
 .leaderboard table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: token.$font-size-body-small;
+  font-weight: token.$font-weight-bold;
   text-align: center;
 }
 .leaderboard th {
   height: 67px;
   color: token.$color-white;
-  font-size: 14px;
+  font-size: token.$font-size-body-small;
   background: token.$color-brand;
 }
 .leaderboard td {
@@ -381,7 +381,7 @@
   place-items: center;
   border: 1px solid token.$color-ink;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: token.$font-size-small;
   background: token.$color-avatar-green;
 }
 .leaderboard tbody tr:nth-child(3n) .avatar {
@@ -391,14 +391,14 @@
   background: token.$color-avatar-pink;
 }
 .streak {
-  font-size: 16px;
+  font-size: token.$font-size-body;
 }
 .favorite-game span {
   display: inline-block;
   padding: 4px 12px;
   border: 1px solid token.$color-ink;
-  border-radius: 999px;
-  font-size: 12px;
+  border-radius: token.$radius-pill;
+  font-size: token.$font-size-small;
 }
 .developer-section {
   display: grid;
@@ -418,29 +418,29 @@
   padding: token.$space-5;
   border: token.$border;
   border-radius: token.$radius-medium;
-  box-shadow: 0 6px 14px token.$color-card-shadow;
+  box-shadow: token.$shadow-card-soft;
   background: token.$color-white;
 }
 .developer-section h2 {
-  font-size: 28px;
+  font-size: token.$font-size-heading;
 }
 .developer-section p,
 .developer-section small {
   margin: 0;
   color: token.$color-ink-soft;
-  font-weight: 500;
+  font-weight: token.$font-weight-medium;
   line-height: 1.45;
 }
 .developer-section p {
   max-width: 65ch;
-  font-size: 16px;
+  font-size: token.$font-size-body;
 }
 .developer-section small {
-  font-size: 13px;
+  font-size: token.$font-size-label;
 }
 .developer-section__content .button {
   justify-self: start;
-  min-height: 56px;
+  min-height: token.$button-height-large;
   padding: 16px 24px;
 }
 .developer-section__content .button img {
@@ -460,14 +460,14 @@
 }
 .site-footer .brand {
   color: token.$color-white;
-  font-size: 20px;
+  font-size: token.$font-size-title-small;
 }
 .footer-intro {
   max-width: 400px;
 }
 .footer-intro p {
   margin: token.$space-3 0 0;
-  font-size: 14px;
+  font-size: token.$font-size-body-small;
   line-height: 1.5;
 }
 .footer-links {
@@ -482,11 +482,11 @@
 .footer-links h3 {
   margin: 0 0 4px;
   color: token.$color-white;
-  font-size: 14px;
+  font-size: token.$font-size-body-small;
 }
 .footer-links a,
 .site-footer__bottom {
-  font-size: 13px;
+  font-size: token.$font-size-label;
 }
 .social-links {
   gap: token.$space-2;
@@ -518,7 +518,7 @@
   padding: 0;
   border: 0;
   border-radius: token.$radius-large;
-  box-shadow: 8px 8px 0 token.$color-dialog-shadow;
+  box-shadow: token.$shadow-dialog;
   background: token.$color-surface;
   opacity: 0;
   transform: translateY(20px) scale(0.98);
@@ -561,7 +561,7 @@
   right: 12px;
   display: grid;
   border-radius: 50%;
-  font-size: 28px;
+  font-size: token.$font-size-heading;
   line-height: 1;
 }
 .auth-dialog__content {
@@ -588,10 +588,10 @@
   border-radius: token.$radius-small;
 }
 .auth-tabs__button {
-  min-height: 44px;
+  min-height: token.$tab-height;
   border: 0;
   color: token.$color-ink-soft;
-  font-weight: 800;
+  font-weight: token.$font-weight-extra-bold;
   background: transparent;
 }
 .auth-tabs__button.is-active {
@@ -599,13 +599,13 @@
   background: token.$color-brand;
 }
 .auth-form__heading h2 {
-  font-size: 24px;
+  font-size: token.$font-size-title;
 }
 .auth-form__heading p,
 .auth-form__footer {
   margin: token.$space-1 0 0;
   color: token.$color-ink-soft;
-  font-size: 14px;
+  font-size: token.$font-size-body-small;
 }
 .auth-form__fields {
   display: grid;
@@ -615,8 +615,8 @@
   display: grid;
   gap: 6px;
   color: token.$color-ink;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: token.$font-size-body-small;
+  font-weight: token.$font-weight-extra-bold;
 }
 .auth-form input {
   width: 100%;
@@ -625,7 +625,7 @@
   border: token.$border;
   border-radius: token.$radius-small;
   color: token.$color-ink;
-  font-size: 14px;
+  font-size: token.$font-size-body-small;
   background: token.$color-white;
 }
 .auth-form input::placeholder {
@@ -642,8 +642,8 @@
   padding: 0;
   border: 0;
   color: token.$color-ink;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: token.$font-size-body-small;
+  font-weight: token.$font-weight-extra-bold;
   text-decoration: underline;
   background: transparent;
 }
@@ -656,8 +656,8 @@
   gap: token.$space-2;
   align-items: center;
   color: token.$color-ink-soft;
-  font-size: 12px;
-  font-weight: 800;
+  font-size: token.$font-size-small;
+  font-weight: token.$font-weight-extra-bold;
 }
 .or-divider::before,
 .or-divider::after {
@@ -671,8 +671,8 @@
 }
 .google-mark {
   color: token.$color-google;
-  font-size: 22px;
-  font-weight: 900;
+  font-size: token.$font-size-google-mark;
+  font-weight: token.$font-weight-black;
 }
 .auth-form__footer {
   margin: 0;
@@ -751,22 +751,22 @@
     padding: token.$space-4;
   }
   .hero h1 {
-    font-size: 36px;
+    font-size: token.$font-size-display-tablet;
   }
   .hero p {
     margin-block: token.$space-2;
-    font-size: 14px;
+    font-size: token.$font-size-body-small;
   }
   .hero .button {
-    min-height: 37px;
+    min-height: token.$button-height-small;
     padding: 8px 20px;
-    font-size: 14px;
+    font-size: token.$font-size-body-small;
   }
   .section {
     padding-block: token.$space-3;
   }
   .section-heading h2 {
-    font-size: 20px;
+    font-size: token.$font-size-title-small;
   }
   .section-heading h2::before {
     width: 5px;
@@ -819,7 +819,7 @@
   }
   .game-card__overlay h3,
   .game-card__meta {
-    font-size: 12px;
+    font-size: token.$font-size-small;
   }
   .game-card__meta img {
     width: 12px;
@@ -833,7 +833,7 @@
   }
   .leaderboard table,
   .leaderboard th {
-    font-size: 10px;
+    font-size: token.$font-size-caption;
   }
   .leaderboard th {
     height: 48px;
@@ -856,7 +856,7 @@
     flex-basis: 24px;
     width: 24px;
     height: 24px;
-    font-size: 8px;
+    font-size: token.$font-size-tiny;
   }
   .developer-section {
     grid-template-columns: 1fr;
@@ -869,17 +869,17 @@
     padding: token.$space-3;
   }
   .developer-section h2 {
-    font-size: 20px;
+    font-size: token.$font-size-title-small;
   }
   .developer-section p {
-    font-size: 12px;
+    font-size: token.$font-size-small;
   }
   .developer-section__content .button {
-    min-height: 37px;
+    min-height: token.$button-height-small;
     padding: 8px 16px;
   }
   .developer-section small {
-    font-size: 10px;
+    font-size: token.$font-size-caption;
   }
   .site-footer__top {
     display: grid;
@@ -905,7 +905,7 @@
     padding-inline: 10px;
   }
   .brand {
-    font-size: 16px;
+    font-size: token.$font-size-body;
   }
   .brand img {
     width: 20px;
@@ -923,13 +923,13 @@
     padding: token.$space-3;
     border-width: 2px;
     border-radius: token.$radius-medium;
-    box-shadow: 4px 4px 0 token.$color-ink;
+    box-shadow: token.$shadow-hard;
   }
   .hero h1 {
-    font-size: 23px;
+    font-size: token.$font-size-display-phone;
   }
   .hero p {
-    font-size: 10px;
+    font-size: token.$font-size-caption;
   }
   .section,
   .developer-section,
@@ -938,7 +938,7 @@
     padding-inline: 10px;
   }
   .section-heading h2 {
-    font-size: 18px;
+    font-size: token.$font-size-body-large;
   }
   .game-carousel {
     grid-template-columns: 28px minmax(0, 1fr) 28px;
@@ -947,15 +947,15 @@
   .game-card {
     height: 100px;
     border-width: 2px;
-    border-radius: 12px;
-    box-shadow: 2px 2px 0 token.$color-ink;
+    border-radius: token.$radius-card-phone;
+    box-shadow: token.$shadow-card-phone;
   }
   .game-card__overlay {
     padding: 18px 7px 7px;
   }
   .game-card__overlay h3,
   .game-card__meta {
-    font-size: 9px;
+    font-size: token.$font-size-compact;
   }
   .game-card__meta img {
     width: 9px;
@@ -971,7 +971,7 @@
   }
   .leaderboard table,
   .leaderboard th {
-    font-size: 8px;
+    font-size: token.$font-size-tiny;
   }
   .leaderboard th {
     height: 39px;
@@ -994,16 +994,16 @@
     flex-basis: 16px;
     width: 16px;
     height: 16px;
-    font-size: 6px;
+    font-size: token.$font-size-micro;
   }
   .streak {
-    font-size: 10px;
+    font-size: token.$font-size-caption;
   }
   .developer-section__content {
     border-width: 2px;
   }
   .developer-section h2 {
-    font-size: 18px;
+    font-size: token.$font-size-body-large;
   }
   .site-footer__top {
     gap: token.$space-3;
@@ -1011,13 +1011,13 @@
     padding-bottom: token.$space-3;
   }
   .site-footer .brand {
-    font-size: 16px;
+    font-size: token.$font-size-body;
   }
   .footer-intro p,
   .footer-links a,
   .footer-links h3,
   .site-footer__bottom {
-    font-size: 10px;
+    font-size: token.$font-size-caption;
   }
   .footer-links {
     display: grid;
