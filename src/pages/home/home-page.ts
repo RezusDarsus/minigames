@@ -13,7 +13,7 @@ const assets = {
 } as const;
 
 const navigation: readonly string[] = ['Home', 'Library', 'Tournaments', 'Community'];
-const cardInformationMinimumWidth: number = 288;
+const cardInformationMinimumWidth: number = 160;
 
 const selectRequired = <ElementType extends Element>(
   root: ParentNode,

@@ -783,14 +783,14 @@
     height: 18px;
   }
   .game-carousel {
-    grid-template-columns: 48px minmax(214px, 1fr) 48px;
-    gap: 4px;
-    height: 160px;
+    grid-template-columns: 110px minmax(0, 1fr) 110px;
+    gap: token.$space-1;
+    height: 285px;
     padding-top: token.$space-2;
   }
   .game-card {
     display: none;
-    height: 154px;
+    height: 281px;
     border-radius: token.$radius-medium;
   }
   .game-card:nth-child(1),
@@ -939,11 +939,12 @@
     font-size: token.$font-size-body-large;
   }
   .game-carousel {
-    grid-template-columns: 28px minmax(0, 1fr) 28px;
-    height: 104px;
+    grid-template-columns: 61px minmax(0, 1fr) 61px;
+    gap: 0;
+    height: 205px;
   }
   .game-card {
-    height: 100px;
+    height: 203px;
     border-width: 2px;
     border-radius: token.$radius-card-phone;
     box-shadow: token.$shadow-card-phone;
